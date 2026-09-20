@@ -6,19 +6,20 @@ const answerB = document.getElementById('B');
 const answerC = document.getElementById('C');
 const answerD = document.getElementById('D');
 const answerE = document.getElementById('E');
+const submit = document.getElementsByClassName('submission');
 let questions = [
     {
-        question: 'Would you like to have your partner taller or shorter than you?',
+        question: 'Would you want to have your partner taller or shorter than you?',
         answers: {
             A: 'Reach for the sky!',
             B: "They're on top shelf duty",
             C: 'About the same height',
             D: 'Short king/ queen/ non-binary royalty FTW!',
-            E: "I'm Snow White and they're the (one) dwarf"
+            E: "I'm Snow White and they're the (one?) dwarf"
         }
     },
     {
-        question: 'What size would you like your partner to be?',
+        question: 'What size would you want your partner to be?',
         answers: {
             A: 'A twig',
             B: 'A large branch?',
@@ -114,5 +115,31 @@ startBtn.addEventListener('click', () => {
     startQuiz();
     getQuestion();
 })
+endBtn.addEventListener('click', (submitAnswer)) 
 
-
+let iowa = 0;
+let kirov = 0;
+let nimitz = 0;
+let forrestal = 0;
+let kiev = 0;
+let moskva = 0;
+let slava = 0;
+let sovremenny = 0;
+let kara = 0;
+let ticonderoga = 0;
+let belknap = 0;
+let la = 0;
+let kilo = 0;
+let alfa = 0;
+let kashin = 0;
+let spruance = 0;
+let osa = 0;
+let haruna = 0;
+let tachikaze = 0;
+let yushio = 0;
+let knox = 0;
+let adams = 0;
+let luda = 0;
+let han = 0;
+let aliya = 0;
+let alvand = 0;
