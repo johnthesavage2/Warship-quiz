@@ -11,38 +11,38 @@ let questions = [
     {
         question: 'Would you want to have your partner taller or shorter than you?',
         answers: {
-            A: 'Reach for the sky!',
-            B: "They're on top shelf duty",
-            C: 'About the same height',
-            D: 'Short king/ queen/ non-binary royalty FTW!',
-            E: "I'm Snow White and they're the (one?) dwarf"
+            A: 'Reach for the sky!', // Nimitz, Forrestal
+            B: "They're on top shelf duty", // Kiev, Kirov, Long Beach, Iowa
+            C: 'About the same height', // Moskva, Kara, Kashin, Slava, Sovremenny, Tico, Haruna, Tachikaze, Spruance
+            D: 'Short king/ queen/ non-binary royalty FTW!', // LA, Alfa, Alvand, Han, Yushio, Adams, Knox, Luda
+            E: "I'm Snow White and they're the (one?) dwarf" // Osa, Aliya, Kilo
         }
     },
     {
         question: 'What size would you want your partner to be?',
         answers: {
-            A: 'A twig',
-            B: 'A large branch?',
-            C: 'What about average?',
-            D: 'THICK THIGHS SAVE LIVES!',
-            E: 'Please... I want you to crush me'
+            A: 'A twig', // Osa, Aliya, Alvand
+            B: 'A large branch?', // Kilo, Kashin, Alfa, Tachikaze, Adams, Knox, Luda, Yushio
+            C: 'What about average?', // LA, Slava, Kara, Sovremenny, Tico, Haruna, Spruance, Han
+            D: 'THICK THIGHS SAVE LIVES!', // Kiev, Kirov, Long Beach, Iowa, Moskva
+            E: 'Please... I want you to crush me' // Nimitz, Forrestal
         }
     },
     {
         question: 'How old would you want your partner to be, relative to yourself?',
         answers: {
-            A: '#GraveRobber',
-            B: '*ack* Um, Mommy? Sorry, Mommy?',
-            C: 'Literally born on the same day as me',
-            D: '"Find me in the mountains, cause Im a cougar"',
-            E: "Why shouldn't I rob the cradle?"
+            A: '#GraveRobber', // Iowa, Forrestal
+            B: '*ack* Um, Mommy? Sorry, Mommy?', // Kashin, Long Beach, Osa, Adams
+            C: 'Literally born on the same day as me', // Moskva, Alfa, Kara, Haruna, Knox, Luda, Han, Alvand
+            D: '"Find me in the mountains, cause Im a cougar"', // Nimitz, Kiev, LA, Tachikaze, Spruance, 
+            E: "Why shouldn't I rob the cradle?" // Kilo, Kirov, Slava, Sovremenny, Tico, Yushio, Aliya
         }
     },
     {
         question: 'How outgoing would you like your partner to be?',
         answers: {
             A: "The party don't start 'till they walk in",
-            B: 'Official hype man',
+            B: 'Designated Hype Man',
             C: 'Being the center of attention... every now and again',
             D: "Good at conversations and friendly, but doesn't draw a scene",
             E: 'The quiet one in the corner, plotting their escape'
