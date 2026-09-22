@@ -1,11 +1,11 @@
 const startBtn = document.getElementById('start-btn');
 const endBtn = document.getElementById('submit-btn');
 const testQuestion = document.getElementsByClassName('question');
-const answerA = document.getElementById('A');
-const answerB = document.getElementById('B');
-const answerC = document.getElementById('C');
-const answerD = document.getElementById('D');
-const answerE = document.getElementById('E');
+const answerA = document.getElementsByClassName('A');
+const answerB = document.getElementsByClassName('B');
+const answerC = document.getElementsByClassName('C');
+const answerD = document.getElementsByClassName('D');
+const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
 let questions = [
     {
@@ -127,7 +127,7 @@ let slava = 0;
 let sovremenny = 0;
 let kara = 0;
 let ticonderoga = 0;
-let belknap = 0;
+let longBeach = 0;
 let la = 0;
 let kilo = 0;
 let alfa = 0;

@@ -6,7 +6,7 @@
         <title>Warship Quiz</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="./assets/CSS/style.css">
     </head>
     <body>
         <script src="./assets/JS/script.js" async defer></script>
@@ -18,89 +18,90 @@
             <p>Have you ever wondered which finely-crafted floating weapon of war is your soul mate? No? Pffft, of course you have, don't be ridiculous.</p>
             <p>Anyway, now you don't have to! Merely answer these objective and totally-not-loaded questions and let's discover which floating brick has the
                 key to your heart.</p>
+            <button type="button" id="start-btn">Start</button>
             <div id="quiz">
                 <section class="question">
                     <span>Would you want your partner to be taller or shorter than you?</span> <!-- taller = longer ship, shorter = shorter ship -->
-                    <button type="radio" id="q1-a">A. Reach for the sky!</button>
-                    <button type="radio" id="q1-b">B. They're on top shelf duty</button>
-                    <button type="radio" id="q1-c">C. About the same height</button>
-                    <button type="radio" id="q1-d">D. Short king/ queen/ non-binary royalty FTW!</button>
-                    <button type="radio" id="q1-e">E. I'm Snow White and they're the (one?) dwarf</button>
+                    <button type="radio" id="q1-a" class="A">A. Reach for the sky!</button>
+                    <button type="radio" id="q1-b" class="B">B. They're on top shelf duty</button>
+                    <button type="radio" id="q1-c" class="C">C. About the same height</button>
+                    <button type="radio" id="q1-d" class="D">D. Short king/ queen/ non-binary royalty FTW!</button>
+                    <button type="radio" id="q1-e" class="E">E. I'm Snow White and they're the (one?) dwarf</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>What size would you want your partner to be?</span> <!-- Displacement: larger displacement = bigger person, vice versa -->
-                    <button type="radio" id="q2-a">A. A twig</button>
-                    <button type="radio" id="q2-b">B. A large branch?</button>
-                    <button type="radio" id="q2-c">C. What about average?</button>
-                    <button type="radio" id="q2-d">D. THICK THIGHS SAVE LIVES!</button>
-                    <button type="radio" id="q2-e">E. Please... I want you to crush me</button>
+                    <button type="radio" id="q2-a" class="A">A. A twig</button>
+                    <button type="radio" id="q2-b" class="B">B. A large branch?</button>
+                    <button type="radio" id="q2-c" class="C">C. What about average?</button>
+                    <button type="radio" id="q2-d" class="D">D. THICK THIGHS SAVE LIVES!</button>
+                    <button type="radio" id="q2-e" class="E">E. Please... I want you to crush me</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>How old would you want your partner to be, relative to yourself?</span> <!-- Was ship built before or after average year of all ships -->
-                    <button type="radio" id="q3-a">A. #GraveRobber</button>
-                    <button type="radio" id="q3-b">B. *ack* um, Mommy? Sorry. Mommy?</button>
-                    <button type="radio" id="q3-c">C. Literally born the same day as me</button>
-                    <button type="radio" id="q3-d">D. "Find me in the mountains, 'cause I'm a cougar"</button>
-                    <button type="radio" id="q3-e">E. Who said I couldn't rob the cradle?</button>
+                    <button type="radio" id="q3-a" class="A">A. #GraveRobber</button>
+                    <button type="radio" id="q3-b" class="B">B. *ack* um, Mommy? Sorry. Mommy?</button>
+                    <button type="radio" id="q3-c" class="C">C. Literally born the same day as me</button>
+                    <button type="radio" id="q3-d" class="D">D. "Find me in the mountains, 'cause I'm a cougar"</button>
+                    <button type="radio" id="q3-e" class="E">E. Who said I couldn't rob the cradle?</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>How outgoing would you want your partner to be?</span> <!-- More outgoing = have more/ better offensive weapons -->
-                    <button type="radio" id="q4-a">A. The party don't start 'till they walk in</button>
-                    <button type="radio" id="q4-b">B. Designated Hype Man</button>
-                    <button type="radio" id="q4-c">C. Being the center of attention... every now and again</button>
-                    <button type="radio" id="q4-d">D. Good with conversation, but never makes a scene</button>
-                    <button type="radio" id="q4-e">E. The quiet one in the corner, plotting their escape</button>
+                    <button type="radio" id="q4-a" class="A">A. The party don't start 'till they walk in</button>
+                    <button type="radio" id="q4-b" class="B">B. Designated Hype Man</button>
+                    <button type="radio" id="q4-c" class="C">C. Being the center of attention... every now and again</button>
+                    <button type="radio" id="q4-d" class="D">D. Good with conversation, but never makes a scene</button>
+                    <button type="radio" id="q4-e" class="E">E. The quiet one in the corner, plotting their escape</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>A stranger slaps your ass in public. How would you want your partner to react?</span> <!-- Reacting strongly = have more/ better defensive weapons -->
-                    <button type="radio" id="q5-a">A. Fisticuffs, pepper spray, hand grenade, the works</button>
-                    <button type="radio" id="q5-b">B. Slaps their ass back, then squares up</button>
-                    <button type="radio" id="q5-c">C. Dirty looks, "What the hell, dude?"</button>
-                    <button type="radio" id="q5-d">D. "Are you ok? Just ignore them and let's move on"</button>
-                    <button type="radio" id="q5-e">E. Follows them, finds their car, slashes their tires</button>
+                    <button type="radio" id="q5-a" class="A">A. Fisticuffs, pepper spray, hand grenade, the works</button>
+                    <button type="radio" id="q5-b" class="B">B. Slaps their ass back, then squares up</button>
+                    <button type="radio" id="q5-c" class="C">C. Dirty looks, "What the hell, dude?"</button>
+                    <button type="radio" id="q5-d" class="D">D. "Are you ok? Just ignore them and let's move on"</button>
+                    <button type="radio" id="q5-e" class="E">E. Follows them, finds their car, slashes their tires</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>How important is appearance for you?</span> <!-- How aesthetically the ship looks, more streamlined, proportional, balanced, etc -->
-                    <button type="radio" id="q6-a">A. If they're not a supermodel, I'm not interested</button>
-                    <button type="radio" id="q6-b">B. I want my friends to be a *little* jealous</button>
-                    <button type="radio" id="q6-c">C. It's what's on the inside that matters most</button>
-                    <button type="radio" id="q6-d">D. One man's trash is another man's treasure</button>
-                    <button type="radio" id="q6-e">E. ;)</button>
+                    <button type="radio" id="q6-a" class="A">A. If they're not a supermodel, I'm not interested</button>
+                    <button type="radio" id="q6-b" class="B">B. I want my friends to be a *little* jealous</button>
+                    <button type="radio" id="q6-c" class="C">C. It's what's on the inside that matters most</button>
+                    <button type="radio" id="q6-d" class="D">D. Everyone's beautiful in their own way</button>
+                    <button type="radio" id="q6-e" class="E">E. Catfish is the best fish ;)</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>How many kids would you want with your partner?</span> <!-- How many aircraft does the ship have: want more kids = favors a carrier of some kind -->
-                    <button type="radio" id="q7-a">A. Zero, thank you very much</button>
-                    <button type="radio" id="q7-b">B. Just one</button>
-                    <button type="radio" id="q7-c">C. 2-4 isn't too many</button>
-                    <button type="radio" id="q7-d">D. "God wants us to repopulate the earth" number of kids</button>
+                    <button type="radio" id="q7-a" class="A">A. Zero, thank you very much</button>
+                    <button type="radio" id="q7-b" class="B">B. Just one</button>
+                    <button type="radio" id="q7-c" class="C">C. 2-4 isn't too many</button>
+                    <button type="radio" id="q7-d" class="D">D. "God wants us to repopulate the earth" number of kids</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>You're going out to eat with your partner, and you get to choose. Which of these would you pick?</span> <!-- Where does the ship come from: Japan, US, USSR, etc. -->
-                    <button type="radio" id="q8-a">A. A steakhouse</button>
-                    <button type="radio" id="q8-b">B. A sushi bar</button>
-                    <button type="radio" id="q8-c">C. An Eastern European restaurant</button>
-                    <button type="radio" id="q8-d">D. Mediterranean cuisine</button>
+                    <button type="radio" id="q8-a" class="A">A. A steakhouse</button>
+                    <button type="radio" id="q8-b" class="B">B. A sushi bar</button>
+                    <button type="radio" id="q8-c" class="C">C. An Eastern European restaurant</button>
+                    <button type="radio" id="q8-d" class="D">D. Mediterranean cuisine</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
                 <section class="question">
                     <span>Would you want your partner to be a more fast-paced or slow-paced person?</span> <!-- More fast-paced = more speed, more slow-paced = less speed -->
-                    <button type="radio" id="q9-a">A. #RiseAndGrind</button>
-                    <button type="radio" id="q9-b">B. A real go-getter</button>
-                    <button type="radio" id="q9-c">C. Life is all about balance</button>
-                    <button type="radio" id="q9-d">D. Taking a scenic detour now and again</button>
-                    <button type="radio" id="q9-e">E. "Goals? What are those?"</button>
+                    <button type="radio" id="q9-a" class="A">A. #RiseAndGrind</button>
+                    <button type="radio" id="q9-b" class="B">B. A real go-getter</button>
+                    <button type="radio" id="q9-c" class="C">C. Life is all about balance</button>
+                    <button type="radio" id="q9-d" class="D">D. Taking a scenic detour now and again</button>
+                    <button type="radio" id="q9-e" class="E">E. "Goals? What are those?"</button>
                     <button type="submit" class="submission">Submit Answer</button>
                 </section>
             </div>
-            <button id="submit">Submit</button>
-            <p>After x amount of seconds, our award-winning team of degenerate scientists has found the warship that is meant for you! Are you ready?</p>
+            <button type="submit" id="submit-btn">Submit</button>
+            <p>After x amount of seconds, our award-winning team of degenerates has found the warship that is meant for you! Are you ready?</p>
         </main>
     </body>
 </html>
