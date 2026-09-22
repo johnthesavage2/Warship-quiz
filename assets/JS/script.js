@@ -23,8 +23,8 @@ let questions = [
         answers: {
             A: 'A twig', // Osa, Aliya, Alvand
             B: 'A large branch?', // Kilo, Kashin, Alfa, Tachikaze, Adams, Knox, Luda, Yushio
-            C: 'What about average?', // LA, Slava, Kara, Sovremenny, Tico, Haruna, Spruance, Han
-            D: 'THICK THIGHS SAVE LIVES!', // Kiev, Kirov, Long Beach, Iowa, Moskva
+            C: 'What about average?', // LA, Kara, Sovremenny, Tico, Haruna, Spruance, Han
+            D: 'THICK THIGHS SAVE LIVES!', // Kiev, Kirov, Long Beach, Iowa, Moskva, Slava
             E: 'Please... I want you to crush me' // Nimitz, Forrestal
         }
     },
@@ -39,61 +39,61 @@ let questions = [
         }
     },
     {
-        question: 'How outgoing would you like your partner to be?',
+        question: 'How outgoing would you like your partner to be?', // Come back to this one
         answers: {
-            A: "The party don't start 'till they walk in",
-            B: 'Designated Hype Man',
-            C: 'Being the center of attention... every now and again',
-            D: "Good at conversations and friendly, but doesn't draw a scene",
-            E: 'The quiet one in the corner, plotting their escape'
+            A: "The party don't start 'till they walk in", // Nimitz, Kirov
+            B: 'Designated Hype Man', // Forrestal, Kiev, LA, Slava, Sovremenny, Iowa
+            C: 'Being the center of attention... every now and again', // Kilo, Alfa, Long Beach, Tico, Osa, Yushio
+            D: "Good at conversations and friendly, but doesn't draw a scene", // Kara, Kashin, Tachikaze, Spruance, Adams, Luda, Han, Aliya, Alvand
+            E: 'The quiet one in the corner, plotting their escape' // Maybe add subs here, not sure. Also Haruna, Moskva, Knox
         }
     },
     {
-        question: 'A stranger slaps your ass in public. How would you want your partner to react?',
+        question: 'A stranger slaps your ass in public. How would you want your partner to react?', // Maybe add a sixth option here, come back to this
         answers: {
-            A: 'Fisticuffs, pepper spray, hand grenade, the works',
-            B: 'Slaps their ass back, then squares up',
-            C: 'Throws them a dirty look, "What the hell, dude?"',
+            A: 'Fisticuffs, pepper spray, hand grenade, the works', // Kirov, Tico
+            B: 'Slaps their ass back, then squares up', // Slava, Sovremenny, Long Beach
+            C: 'Throws them a dirty look, "What the hell, dude?"', // 
             D: '"Are you ok? Lets get out of here."',
             E: 'Follows them, finds their car, slashes their tires'
         }
     },
     {
-        question: "How important is your partner's appearance for you?",
+        question: "How important is your partner's appearance for you?", 
         answers: {
-            A: "If they're not a supermodel, I'm not interested",
-            B: 'I want my friends to be a *little* jealous',
-            C: "It's what's on the inside that matters",
-            D: "One man's trash is another man's treasure",
-            E: ';)'
+            A: "If they're not a supermodel, I'm not interested", // Kara, Alfa, Long Beach, LA
+            B: 'I want my friends to be a *little* jealous', // Kirov, Iowa, Sovremenny, Tachikaze, Adams
+            C: "It's what's on the inside that matters", // Nimitz, Kiev, Kilo, Slava, Kashin, Tico, Luda, Han, Yushio
+            D: "Everyone's beautiful in their own way", // Forrestal, Moskva, Haruna, Osa, Knox, Alvand
+            E: ';)' // Spruance, Aliya
         }
     },
     {
         question: 'How many kids would you want with your partner?',
         answers: {
-            A: 'Zero, thank you very much',
-            B: 'Just one',
-            C: "2-4 isn't too many",
-            D: '"God wants us to repopulate the Earth" number of kids'
+            A: 'Zero, thank you very much', // LA, Kilo, Alfa, Kashin, Long Beach, Tachikaze, Osa, Adams, Iowa, Han, Yushio, Luda, Alvand
+            B: 'Just one', // Kara, Slava, Sovremenny, Knox
+            C: "2-4 isn't too many", // Moskva, Kirov, Tico, Haruna, Spruance, Aliya
+            D: '"God wants us to repopulate the Earth" number of kids' // Nimitz, Forrestal, Kiev
         }
     },
     {
         question: "You're going out to eat with your partner, and you get to choose. Which of these places are you going?",
         answers: {
-            A: 'A steakhouse',
-            B: 'A sushi bar',
-            C: 'Authentic Ukranian restaurant',
-            D: 'Mediterranean cuisine'
+            A: 'A steakhouse', // Nimitz, Forrestal, Tico, Long Beach, Spruance, Adams, LA, Iowa, Knox
+            B: 'A sushi bar', // Haruna, Tachikaze, Luda, Han, Yushio
+            C: 'Authentic Ukranian restaurant', // Kiev, Moskva, Kirov, Slava, Kilo, Alfa, Kara, Kashin, Sovremenny, Osa
+            D: 'Mediterranean cuisine' // Alvand, Aliya
         }
     },
     {
         question: 'Would you want your partner to be a more fast-paced or slow-paced person?',
         answers: {
-            A: '#RiseAndGrind',
-            B: 'A real go-getter',
-            C: 'Life is all about balance',
-            D: 'Takes a scenic detour now and again',
-            E: '"Goals? What are those?"'
+            A: '#RiseAndGrind', // Alfa, Luda, Osa, Alvand 
+            B: 'A real go-getter', // Forrestal, LA, Kara, Kashin, Adams, Iowa, Aliya
+            C: 'Life is all about balance', // Nimitz, Kiev, Kirov, Slava, Sovremenny, Tico, Long Beach, Haruna, Tachikaze, Spruance
+            D: 'Takes a scenic detour now and again', // Moskva, Knox, Han
+            E: '"Goals? What are those?"' // Yushio, Kilo
         }
     }
 ]
