@@ -7,6 +7,33 @@ const answerC = document.getElementsByClassName('C');
 const answerD = document.getElementsByClassName('D');
 const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
+let currentQuestion = 0;
+let iowa = 0;
+let kirov = 0;
+let nimitz = 0;
+let forrestal = 0;
+let kiev = 0;
+let moskva = 0;
+let slava = 0;
+let sovremenny = 0;
+let kara = 0;
+let ticonderoga = 0;
+let longBeach = 0;
+let la = 0;
+let kilo = 0;
+let alfa = 0;
+let kashin = 0;
+let spruance = 0;
+let osa = 0;
+let haruna = 0;
+let tachikaze = 0;
+let yushio = 0;
+let knox = 0;
+let adams = 0;
+let luda = 0;
+let han = 0;
+let aliya = 0;
+let alvand = 0;
 let questions = [
     {
         question: 'Would you want to have your partner taller or shorter than you?',
@@ -45,7 +72,7 @@ let questions = [
             B: 'Designated Hype Man', // Forrestal, Kiev, LA, Slava, Sovremenny, Iowa
             C: 'Being the center of attention... every now and again', // Kilo, Alfa, Long Beach, Tico, Osa, Yushio
             D: "Good at conversations and friendly, but doesn't draw a scene", // Kara, Kashin, Tachikaze, Spruance, Adams, Luda, Han, Aliya, Alvand
-            E: 'The quiet one in the corner, plotting their escape' // Maybe add subs here, not sure. Also Haruna, Moskva, Knox
+            E: 'The quiet one in the corner, plotting their escape' // Haruna, Moskva, Knox
         }
     },
     {
@@ -53,9 +80,9 @@ let questions = [
         answers: {
             A: 'Fisticuffs, pepper spray, hand grenade, the works', // Kirov, Tico
             B: 'Slaps their ass back, then squares up', // Slava, Sovremenny, Long Beach
-            C: 'Throws them a dirty look, "What the hell, dude?"', // 
-            D: '"Are you ok? Lets get out of here."',
-            E: 'Follows them, finds their car, slashes their tires'
+            C: 'Throws them a dirty look, "What the hell, dude?"', // Nimitz, Kiev, Kara, Kashin, Tachikaze, Adams,
+            D: '"Are you ok? Lets get out of here."', // Forrestal, Moskva, Haruna, Spruance, Knox, Iowa, Aliya, Alvand, Osa, Luda
+            E: 'Follows them, finds their car, slashes their tires' // LA, Kilo, Alfa, Yushio, Han, 
         }
     },
     {
@@ -102,44 +129,23 @@ const submitAnswer = () => {
     let choice = document.querySelector('input[name="answer"]:checked');
 }
 const getQuestion = () => {
-    const newQuestion = questions;
-    testQuestion.textContent = newQuestion.question;
-    answerA.textContent = newQuestion.answers.A;
-    answerB.textContent = newQuestion.answer.B;
-    answerC.textContent = newQuestion.answer.C;
-    answerD.textContent = newQuestion.answer.D;
-    answerE.textContent = newQuestion.answer.E;
-    answeredQuestions.push(newQuestion);
+    currentQuestion += 1;
 }
+
+const kirovScore = () => { // Might not work, have to test if it updates every time
+    if (choice === questions[0][B] || choice === questions[1][D] || choice === questions[2][E] || choice === questions[3][A] || choice === questions[4][A]
+        || choice === questions[5][B] || choice === questions[6][C] || choice === questions[7][C] || choice === questions[8][C]) {
+        kirov += 1;
+    }
+}
+const nimitzScore = () => {
+    if (choice === questions[0][A]) {
+        nimitz += 1;
+    }
+}
+
 startBtn.addEventListener('click', () => {
     startQuiz();
     getQuestion();
 })
 endBtn.addEventListener('click', (submitAnswer)) 
-
-let iowa = 0;
-let kirov = 0;
-let nimitz = 0;
-let forrestal = 0;
-let kiev = 0;
-let moskva = 0;
-let slava = 0;
-let sovremenny = 0;
-let kara = 0;
-let ticonderoga = 0;
-let longBeach = 0;
-let la = 0;
-let kilo = 0;
-let alfa = 0;
-let kashin = 0;
-let spruance = 0;
-let osa = 0;
-let haruna = 0;
-let tachikaze = 0;
-let yushio = 0;
-let knox = 0;
-let adams = 0;
-let luda = 0;
-let han = 0;
-let aliya = 0;
-let alvand = 0;
