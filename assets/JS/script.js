@@ -124,9 +124,13 @@ let questions = [
         }
     }
 ]
+const startQuiz = () => {
+
+}
 let answeredQuestions = [];
 const submitAnswer = () => {
     let choice = document.querySelector('input[name="answer"]:checked');
+    getQuestion();
 }
 const getQuestion = () => {
     currentQuestion += 1;
