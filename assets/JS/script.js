@@ -136,18 +136,60 @@ const getQuestion = () => {
     currentQuestion += 1;
 }
 
-let score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,]; // index is tied to each ship, score counters increase by calling index
+let score = [
+    {nimitz: 0},
+    {forrestal: 0},
+    {kiev: 0},
+    {moskva: 0},
+    {kirov: 0},
+    {slava: 0},
+    {kara: 0},
+    {kashin: 0},
+    {sovremenny: 0},
+    {iowa: 0},
+    {ticonderoga: 0},
+    {longBeach: 0},
+    {spruance: 0},
+    {adams: 0},
+    {knox: 0},
+    {haruna: 0},
+    {tachikaze: 0},
+    {luda: 0},
+    {la: 0},
+    {alfa: 0},
+    {han: 0},
+    {yushio: 0},
+    {osa: 0},
+    {aliya: 0},
+    {alvand: 0}
+]; // index is tied to each ship, score counters increase by calling index
+const nimitzScore = () => {
+    if (choice === questions[0][A]) {
+        score[nimitz] += 1;
+    }
+}
+const forrestalScore = () => {
+    if (choice === questions[0][A]) {
+        score[forrestal] += 1;
+    }
+}
+const kievScore = () => {
+    if (choice === questions[0][B]) {
+        score[kiev] += 1;
+    }
+}
+const moskvaScore = () => {
+    if (choice === questions[0][B]) {
+        score[moskva] += 1;
+    }
+}
 const kirovScore = () => { // Might not work, have to test if it updates every time
     if (choice === questions[0][B] || choice === questions[1][D] || choice === questions[2][E] || choice === questions[3][A] || choice === questions[4][A]
         || choice === questions[5][B] || choice === questions[6][C] || choice === questions[7][C] || choice === questions[8][C]) {
-        score[4] += 1;
+        score[kirov] += 1;
     }
 }
-const nimitzScore = () => {
-    if (choice === questions[0][A]) {
-        score[0] += 1;
-    }
-}
+
 
 startBtn.addEventListener('click', () => {
     startQuiz();
