@@ -162,7 +162,7 @@ let score = [
     {osa: 0},
     {aliya: 0},
     {alvand: 0}
-]; // index is tied to each ship, score counters increase by calling index
+]; // index is tied to each ship, score counters increase by calling key
 const nimitzScore = () => {
     if (choice === questions[0][A]) {
         score[nimitz] += 1;
@@ -179,7 +179,7 @@ const kievScore = () => {
     }
 }
 const moskvaScore = () => {
-    if (choice === questions[0][B]) {
+    if (choice === questions[0][C]) {
         score[moskva] += 1;
     }
 }
@@ -187,10 +187,48 @@ const kirovScore = () => { // Might not work, have to test if it updates every t
     if (choice === questions[0][B] || choice === questions[1][D] || choice === questions[2][E] || choice === questions[3][A] || choice === questions[4][A]
         || choice === questions[5][B] || choice === questions[6][C] || choice === questions[7][C] || choice === questions[8][C]) {
         score[kirov] += 1;
-    }
+    };
 }
-
-
+const slavaScore = () => {
+    if (choice === questions[0][C]) {
+        score[slava] += 1;
+    };
+}
+const karaScore = () => {
+    if (choice === questions[0][C]) {
+        score[kara] += 1;
+    };
+}
+const kashinScore = () => {
+    if (choice === questions[0][C]) {
+        score[kashin] += 1;
+    };
+}
+const sovremennyScore = () => {
+    if (choice === questions[0][C]) {
+        score[sovremenny] += 1;
+    };
+}
+const iowaScore = () => {
+    if (choice === questions[0][A]) {
+        score[iowa] += 1;
+    };
+}
+const ticonderogaScore = () => {
+    if (choice === questions[0][C]) {
+        score[ticonderoga] += 1;
+    };
+}
+const longBeachScore = () => {
+    if (choice === questions[0][B]) {
+        score[longBeach] += 1;
+    };
+}
+const spruanceScore = () => {
+    if (choice === questions[0][C]) {
+        score[spruance] += 1;
+    };
+}
 startBtn.addEventListener('click', () => {
     startQuiz();
     getQuestion();
