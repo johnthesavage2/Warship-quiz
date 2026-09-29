@@ -136,15 +136,16 @@ const getQuestion = () => {
     currentQuestion += 1;
 }
 
+let score = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,]; // index is tied to each ship, score counters increase by calling index
 const kirovScore = () => { // Might not work, have to test if it updates every time
     if (choice === questions[0][B] || choice === questions[1][D] || choice === questions[2][E] || choice === questions[3][A] || choice === questions[4][A]
         || choice === questions[5][B] || choice === questions[6][C] || choice === questions[7][C] || choice === questions[8][C]) {
-        kirov += 1;
+        score[4] += 1;
     }
 }
 const nimitzScore = () => {
     if (choice === questions[0][A]) {
-        nimitz += 1;
+        score[0] += 1;
     }
 }
 
