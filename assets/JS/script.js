@@ -137,7 +137,7 @@ const submitAnswer = () => {
 const getQuestion = () => {
     currentQuestion += 1;
     if (answeredQuestions.length === questions.length) {
-        console.log('All questions answered');
+        console.log("That's it!");
         // console.log(score);
         // let highestScore = 0;
         // let highestScoringShip = '';
@@ -145,8 +145,8 @@ const getQuestion = () => {
         result.classList.remove('hidden');
     }
 }
-
-let score = [
+// might have to add a function to reset the score array to 0 after each quiz, otherwise it will keep adding to the previous score
+let score = [ // might have to add the score functions and array to the submitAnswer function, otherwise it will only update the score for the first question
     {nimitz: 0},
     {forrestal: 0},
     {kiev: 0},
@@ -177,7 +177,7 @@ const nimitzScore = () => {
     if (choice === questions[0].answers[A]) {
         score[nimitz] += 1;
     }
-}
+} 
 const forrestalScore = () => {
     if (choice === questions[0].answers[A]) {
         score[forrestal] += 1;
