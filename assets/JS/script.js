@@ -8,6 +8,7 @@ const answerD = document.getElementsByClassName('D');
 const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
 let currentQuestion = 0;
+let choice = '';
 let iowa = 0;
 let kirov = 0;
 let nimitz = 0;
@@ -125,7 +126,8 @@ let questions = [
     }
 ]
 const startQuiz = () => {
-
+    quizContainer.classList.add('hidden');
+    quiz.classList.remove('hidden');
 }
 let answeredQuestions = [];
 const submitAnswer = () => {
@@ -134,6 +136,14 @@ const submitAnswer = () => {
 }
 const getQuestion = () => {
     currentQuestion += 1;
+    if (answeredQuestions.length === questions.length) {
+        console.log('All questions answered');
+        // console.log(score);
+        // let highestScore = 0;
+        // let highestScoringShip = '';
+        quiz.classList.add('hidden');
+        result.classList.remove('hidden');
+    }
 }
 
 let score = [
@@ -164,68 +174,68 @@ let score = [
     {alvand: 0}
 ]; // index is tied to each ship, score counters increase by calling key
 const nimitzScore = () => {
-    if (choice === questions[0][A]) {
+    if (choice === questions[0].answers[A]) {
         score[nimitz] += 1;
     }
 }
 const forrestalScore = () => {
-    if (choice === questions[0][A]) {
+    if (choice === questions[0].answers[A]) {
         score[forrestal] += 1;
     }
 }
 const kievScore = () => {
-    if (choice === questions[0][B]) {
+    if (choice === questions[0].answers[B]) {
         score[kiev] += 1;
     }
 }
 const moskvaScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[moskva] += 1;
     }
 }
 const kirovScore = () => { // Might not work, have to test if it updates every time
-    if (choice === questions[0][B] || choice === questions[1][D] || choice === questions[2][E] || choice === questions[3][A] || choice === questions[4][A]
-        || choice === questions[5][B] || choice === questions[6][C] || choice === questions[7][C] || choice === questions[8][C]) {
+    if (choice === questions[0].answers[B] || choice === questions[1].answers[D] || choice === questions[2].answers[E] || choice === questions[3].answers[A] || choice === questions[4].answers[A]
+        || choice === questions[5].answers[B] || choice === questions[6].answers[C] || choice === questions[7].answers[C] || choice === questions[8].answers[C]) {
         score[kirov] += 1;
     };
 }
 const slavaScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[slava] += 1;
     };
 }
 const karaScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[kara] += 1;
     };
 }
 const kashinScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[kashin] += 1;
     };
 }
 const sovremennyScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[sovremenny] += 1;
     };
 }
 const iowaScore = () => {
-    if (choice === questions[0][A]) {
+    if (choice === questions[0].answers[A]) {
         score[iowa] += 1;
     };
 }
 const ticonderogaScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[ticonderoga] += 1;
     };
 }
 const longBeachScore = () => {
-    if (choice === questions[0][B]) {
+    if (choice === questions[0].answers[B]) {
         score[longBeach] += 1;
     };
 }
 const spruanceScore = () => {
-    if (choice === questions[0][C]) {
+    if (choice === questions[0].answers[C]) {
         score[spruance] += 1;
     };
 }
