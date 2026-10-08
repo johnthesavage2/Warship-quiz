@@ -9,32 +9,6 @@ const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
 let currentQuestion = 0;
 let choice = '';
-let iowa = 0;
-let kirov = 0;
-let nimitz = 0;
-let forrestal = 0;
-let kiev = 0;
-let moskva = 0;
-let slava = 0;
-let sovremenny = 0;
-let kara = 0;
-let ticonderoga = 0;
-let longBeach = 0;
-let la = 0;
-let kilo = 0;
-let alfa = 0;
-let kashin = 0;
-let spruance = 0;
-let osa = 0;
-let haruna = 0;
-let tachikaze = 0;
-let yushio = 0;
-let knox = 0;
-let adams = 0;
-let luda = 0;
-let han = 0;
-let aliya = 0;
-let alvand = 0;
 let questions = [
     {
         question: 'Would you want to have your partner taller or shorter than you?',
@@ -52,7 +26,7 @@ let questions = [
             A: 'A twig', // Osa, Aliya, Alvand
             B: 'A large branch?', // Kilo, Kashin, Alfa, Tachikaze, Adams, Knox, Luda, Yushio
             C: 'What about average?', // LA, Kara, Sovremenny, Tico, Haruna, Spruance, Han
-            D: 'THICK THIGHS SAVE LIVES!', // Kiev, Kirov, Long Beach, Iowa, Moskva, Slava
+            D: 'THICK THIGHS (OR CHESTS) SAVE LIVES!', // Kiev, Kirov, Long Beach, Iowa, Moskva, Slava
             E: 'Please... I want you to crush me' // Nimitz, Forrestal
         }
     },
@@ -146,7 +120,7 @@ const getQuestion = () => {
     }
 }
 // might have to add a function to reset the score array to 0 after each quiz, otherwise it will keep adding to the previous score
-let score = [ // might have to add the score functions and array to the submitAnswer function, otherwise it will only update the score for the first question
+let ships = [ // might have to add the score functions and array to the submitAnswer function, otherwise it will only update the score for the first question
     {nimitz: 0},
     {forrestal: 0},
     {kiev: 0},
@@ -166,6 +140,7 @@ let score = [ // might have to add the score functions and array to the submitAn
     {tachikaze: 0},
     {luda: 0},
     {la: 0},
+    {kilo: 0},
     {alfa: 0},
     {han: 0},
     {yushio: 0},
@@ -173,72 +148,299 @@ let score = [ // might have to add the score functions and array to the submitAn
     {aliya: 0},
     {alvand: 0}
 ]; // index is tied to each ship, score counters increase by calling key
-const nimitzScore = () => {
-    if (choice === questions[0].answers[A]) {
-        score[nimitz] += 1;
+const checkAnswer = (ships) => {
+    // const shipScores = Object.values(ships).map(ship => Object.values(ship)[0]);
+    const shipScores = ships;
+    for (let question in questions) {
+        if (choice === questions[0].answers[A]) {
+            ships[0].nimitz += 1;
+            ships[1].forrestal += 1;
+        } else if (choice === questions[0].answers[B]) {
+            ships[2].kiev += 1;
+            ships[4].kirov += 1;
+            ships[11].longBeach += 1;
+            ships[9].iowa += 1;
+        } else if (choice === questions[0].answers[C]) {
+            ships[3].moskva += 1;
+            ships[6].kara += 1;
+            ships[7].kashin += 1;
+            ships[5].slava += 1;
+            ships[8].sovremenny += 1;
+            ships[10].ticonderoga += 1;
+            ships[15].haruna += 1;
+            ships[16].tachikaze += 1;
+            ships[12].spruance += 1;
+        } else if (choice === questions[0].answers[D]) {
+            ships[18].la += 1;
+            ships[20].alfa += 1;
+            ships[21].han += 1;
+            ships[22].yushio += 1;
+            ships[13].adams += 1;
+            ships[14].knox += 1;
+            ships[17].luda += 1;
+            ships[25].alvand += 1;
+        } else {
+            ships[23].osa += 1;
+            ships[24].aliya += 1;
+            ships[19].kilo += 1;
+        }
+        if (choice === questions[1].answers[A]) {
+            ships[23].osa += 1;
+            ships[24].aliya += 1;
+            ships[25].alvand += 1;
+        } else if (choice === questions[1].answers[B]) {
+            ships[19].kilo += 1;
+            ships[7].kashin += 1;
+            ships[20].alfa += 1;
+            ships[16].tachikaze += 1;
+            ships[13].adams += 1;
+            ships[14].knox += 1;
+            ships[17].luda += 1;
+            ships[22].yushio += 1;
+        } else if (choice === questions[1].answers[C]) {
+            ships[18].la += 1;
+            ships[6].kara += 1;
+            ships[8].sovremenny += 1;
+            ships[10].ticonderoga += 1;
+            ships[15].haruna += 1;
+            ships[12].spruance += 1;
+            ships[21].han += 1;
+        } else if (choice === questions[1].answers[D]) {
+            ships[2].kiev += 1;
+            ships[4].kirov += 1;
+            ships[11].longBeach += 1;
+            ships[9].iowa += 1;
+            ships[3].moskva += 1;
+            ships[5].slava += 1;
+        } else {
+            ships[0].nimitz += 1;
+            ships[1].forrestal += 1;
+        }
+        if (choice === questions[2].answers[A]) {
+            ships[9].iowa += 1;
+            ships[1].forrestal += 1;
+        } else if (choice === questions[2].answers[B]) {
+            ships[7].kashin += 1;
+            ships[11].longBeach += 1;
+            ships[23].osa += 1;
+            ships[13].adams += 1;
+        } else if (choice === questions[2].answers[C]) {
+            ships[3].moskva += 1;
+            ships[20].alfa += 1;
+            ships[6].kara += 1;
+            ships[15].haruna += 1;
+            ships[14].knox += 1;
+            ships[17].luda += 1;
+            ships[21].han += 1;
+            ships[25].alvand += 1;
+        } else if (choice === questions[2].answers[D]) {
+            ships[0].nimitz += 1;
+            ships[2].kiev += 1;
+            ships[18].la += 1;
+            ships[16].tachikaze += 1;
+            ships[12].spruance += 1;
+        } else {
+            ships[19].kilo += 1;
+            ships[4].kirov += 1;
+            ships[5].slava += 1;
+            ships[8].sovremenny += 1;
+            ships[10].ticonderoga += 1;
+            ships[22].yushio += 1;
+            ships[24].aliya += 1;
+        }
+        if (choice === questions[3].answers[A]) {
+            ships[0].nimitz += 1;
+            ships[4].kirov += 1;
+        } else if (choice === questions[3].answers[B]) {
+            ships[1].forrestal += 1;
+            ships[2].kiev += 1;
+            ships[18].la += 1;
+            ships[5].slava += 1;
+            ships[8].sovremenny += 1;
+            ships[9].iowa += 1;
+        } else if (choice === questions[3].answers[C]) {
+            ships[19].kilo += 1;
+            ships[20].alfa += 1;
+            ships[11].longBeach += 1;
+            ships[10].ticonderoga += 1;
+            ships[23].osa += 1;
+            ships[22].yushio += 1;
+        } else if (choice === questions[3].answers[D]) {
+            ships[6].kara += 1;
+            ships[7].kashin += 1;
+            ships[16].tachikaze += 1;
+            ships[12].spruance += 1;
+            ships[13].adams += 1;
+            ships[17].luda += 1;
+            ships[21].han += 1;
+            ships[24].aliya += 1;
+            ships[25].alvand += 1;
+        } else {
+            ships[3].moskva += 1;
+            ships[14].knox += 1;
+            ships[15].haruna += 1;
+        }
+        if (choice === questions[4].answers[A]) {
+            ships[4].kirov += 1;
+            ships[10].ticonderoga += 1;
+        } else if (choice === questions[4].answers[B]) {
+            ships[5].slava += 1;
+            ships[8].sovremenny += 1;
+            ships[11].longBeach += 1;
+        } else if (choice === questions[4].answers[C]) {
+            ships[0].nimitz += 1;
+            ships[2].kiev += 1;
+            ships[6].kara += 1;
+            ships[7].kashin += 1;
+            ships[16].tachikaze += 1;
+            ships[13].adams += 1;
+        } else if (choice === questions[4].answers[D]) {
+            ships[1].forrestal += 1;
+            ships[3].moskva += 1;
+            ships[15].haruna += 1;
+            ships[12].spruance += 1;
+            ships[14].knox += 1;
+            ships[9].iowa += 1;
+            ships[24].aliya += 1;
+            ships[25].alvand += 1;
+            ships[23].osa += 1;
+            ships[17].luda += 1;
+        } else {
+            ships[18].la += 1;
+            ships[19].kilo += 1;
+            ships[20].alfa += 1;
+            ships[21].han += 1;
+            ships[22].yushio += 1;
+        }
+        if (choice === questions[5].answers[A]) {
+            ships[6].kara += 1;
+            ships[20].alfa += 1;
+            ships[11].longBeach += 1;
+            ships[18].la += 1;
+        } else if (choice === questions[5].answers[B]) {
+            ships[4].kirov += 1;
+            ships[9].iowa += 1;
+            ships[8].sovremenny += 1;
+            ships[16].tachikaze += 1;
+            ships[13].adams += 1;
+        } else if (choice === questions[5].answers[C]) {
+            ships[0].nimitz += 1;
+            ships[2].kiev += 1;
+            ships[19].kilo += 1;
+            ships[5].slava += 1;
+            ships[7].kashin += 1;
+            ships[10].ticonderoga += 1;
+            ships[17].luda += 1;
+            ships[21].han += 1;
+            ships[22].yushio += 1;
+        } else if (choice === questions[5].answers[D]) {
+            ships[1].forrestal += 1;
+            ships[3].moskva += 1;
+            ships[15].haruna += 1;
+            ships[14].knox += 1;
+            ships[25].alvand += 1;
+            ships[23].osa += 1;
+        } else {
+            ships[12].spruance += 1;
+            ships[24].aliya += 1;
+        }
+        if (choice === questions[6].answers[A]) {
+            ships[18].la += 1;
+            ships[19].kilo += 1;
+            ships[20].alfa += 1;
+            ships[23].osa += 1;
+            ships[25].alvand += 1;
+            ships[7].kashin += 1;
+            ships[11].longBeach += 1;
+            ships[16].tachikaze += 1;
+            ships[13].adams += 1;
+            ships[9].iowa += 1;
+            ships[17].luda += 1;
+            ships[22].yushio += 1;
+            ships[21].han += 1;
+        } else if (choice === questions[6].answers[B]) {
+            ships[6].kara += 1;
+            ships[5].slava += 1;
+            ships[8].sovremenny += 1;
+            ships[14].knox += 1;
+        } else if (choice === questions[6].answers[C]) {
+            ships[10].ticonderoga += 1;
+            ships[12].spruance += 1;
+            ships[15].haruna += 1;
+            ships[3].moskva += 1;
+            ships[24].aliya += 1;
+            ships[4].kirov += 1;
+        } else {
+            ships[0].nimitz += 1;
+            ships[2].kiev += 1;
+            ships[1].forrestal += 1;
+        }
+        if (choice === questions[7].answers[A]) {
+            ships[0].nimitz += 1;
+            ships[1].forrestal += 1;
+            ships[10].ticonderoga += 1;
+            ships[11].longBeach += 1;
+            ships[12].spruance += 1;
+            ships[13].adams += 1;
+            ships[18].la += 1;
+            ships[9].iowa += 1;
+            ships[14].knox += 1;
+        } else if (choice === questions[7].answers[B]) {
+            ships[15].haruna += 1;
+            ships[16].tachikaze += 1;
+            ships[17].luda += 1;
+            ships[21].han += 1;
+            ships[22].yushio += 1;
+        } else if (choice === questions[7].answers[C]) {
+            ships[2].kiev += 1;
+            ships[3].moskva += 1;
+            ships[4].kirov += 1;
+            ships[5].slava += 1;
+            ships[6].kara += 1;
+            ships[7].kashin += 1;
+            ships[8].sovremenny += 1;
+            ships[19].kilo += 1;
+            ships[20].alfa += 1;
+            ships[23].osa += 1;
+        } else {
+            ships[24].aliya += 1;
+            ships[25].alvand += 1;
+        }
+        if (choice === questions[8].answers[A]) {
+            ships[20].alfa += 1;
+            ships[17].luda += 1;
+            ships[23].osa += 1;
+            ships[25].alvand += 1;
+        } else if (choice === questions[8].answers[B]) {
+            ships[1].forrestal += 1;
+            ships[6].kara += 1;
+            ships[7].kashin += 1;
+            ships[9].iowa += 1;
+            ships[13].adams += 1;
+            ships[18].la += 1;
+            ships[24].aliya += 1;
+        } else if (choice === questions[8].answers[C]) {
+            ships[0].nimitz += 1;
+            ships[2].kiev += 1;
+            ships[4].kirov += 1;
+            ships[5].slava += 1;
+            ships[8].sovremenny += 1;
+            ships[10].ticonderoga += 1;
+            ships[11].longBeach += 1;
+            ships[12].spruance += 1;
+            ships[16].tachikaze += 1;
+            ships[15].haruna += 1;
+        } else if (choice === questions[8].answers[D]) {
+            ships[3].moskva += 1;
+            ships[21].han += 1;
+            ships[14].knox += 1;
+        } else {
+            ships[19].kilo += 1;
+            ships[22].yushio += 1;
+        }
     }
 } 
-const forrestalScore = () => {
-    if (choice === questions[0].answers[A]) {
-        score[forrestal] += 1;
-    }
-}
-const kievScore = () => {
-    if (choice === questions[0].answers[B]) {
-        score[kiev] += 1;
-    }
-}
-const moskvaScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[moskva] += 1;
-    }
-}
-const kirovScore = () => { // Might not work, have to test if it updates every time
-    if (choice === questions[0].answers[B] || choice === questions[1].answers[D] || choice === questions[2].answers[E] || choice === questions[3].answers[A] || choice === questions[4].answers[A]
-        || choice === questions[5].answers[B] || choice === questions[6].answers[C] || choice === questions[7].answers[C] || choice === questions[8].answers[C]) {
-        score[kirov] += 1;
-    };
-}
-const slavaScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[slava] += 1;
-    };
-}
-const karaScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[kara] += 1;
-    };
-}
-const kashinScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[kashin] += 1;
-    };
-}
-const sovremennyScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[sovremenny] += 1;
-    };
-}
-const iowaScore = () => {
-    if (choice === questions[0].answers[A]) {
-        score[iowa] += 1;
-    };
-}
-const ticonderogaScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[ticonderoga] += 1;
-    };
-}
-const longBeachScore = () => {
-    if (choice === questions[0].answers[B]) {
-        score[longBeach] += 1;
-    };
-}
-const spruanceScore = () => {
-    if (choice === questions[0].answers[C]) {
-        score[spruance] += 1;
-    };
-}
+
 startBtn.addEventListener('click', () => {
     startQuiz();
     getQuestion();
