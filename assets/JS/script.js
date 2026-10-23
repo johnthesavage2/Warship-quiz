@@ -7,6 +7,33 @@ const answerC = document.getElementsByClassName('C');
 const answerD = document.getElementsByClassName('D');
 const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
+const result = document.getElementById('result');
+const nimitzResult = document.getElementById('nimitz');
+const forrestalResult = document.getElementById('forrestal');
+const kievResult = document.getElementById('kiev');
+const moskvaResult = document.getElementById('moskva');
+const kirovResult = document.getElementById('kirov');
+const slavaResult = document.getElementById('slava');
+const karaResult = document.getElementById('kara');
+const kashinResult = document.getElementById('kashin');
+const sovremennyResult = document.getElementById('sovremenny');
+const iowaResult = document.getElementById('iowa');
+const ticonderogaResult = document.getElementById('ticonderoga');
+const longBeachResult = document.getElementById('longBeach');
+const spruanceResult = document.getElementById('spruance');
+const adamsResult = document.getElementById('adams');
+const knoxResult = document.getElementById('knox');
+const harunaResult = document.getElementById('haruna');
+const tachikazeResult = document.getElementById('tachikaze');
+const ludaResult = document.getElementById('luda');
+const laResult = document.getElementById('la');
+const kiloResult = document.getElementById('kilo');
+const alfaResult = document.getElementById('alfa');
+const hanResult = document.getElementById('han');
+const yushioResult = document.getElementById('yushio');
+const osaResult = document.getElementById('osa');
+const aliyaResult = document.getElementById('aliya');
+const alvandResult = document.getElementById('alvand');
 let currentQuestion = 0;
 let choice = '';
 let questions = [
@@ -119,6 +146,7 @@ const getQuestion = () => {
         result.classList.remove('hidden');
     }
 }
+// use array.sort() to sort the highest number once the quiz is done; have to change the key-value pairs in the array
 // might have to add a function to reset the score array to 0 after each quiz, otherwise it will keep adding to the previous score
 let ships = [ // might have to add the score functions and array to the submitAnswer function, otherwise it will only update the score for the first question
     {nimitz: 0},

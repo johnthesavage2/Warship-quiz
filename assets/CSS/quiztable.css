@@ -1,0 +1,12 @@
+html {
+    font-size: 20px;
+}
+
+table {
+    margin: 1rem auto;
+}
+
+tr, td, th {
+    border: 1px solid black;
+    padding: 5px;
+}
