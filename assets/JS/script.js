@@ -8,6 +8,8 @@ const answerD = document.getElementsByClassName('D');
 const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
 const result = document.getElementById('result');
+const quiz = document.getElementById('quiz');
+const quizContainer = document.getElementById('quiz-container');
 const nimitzResult = document.getElementById('nimitz');
 const forrestalResult = document.getElementById('forrestal');
 const kievResult = document.getElementById('kiev');
@@ -136,338 +138,385 @@ const submitAnswer = () => {
     getQuestion();
 }
 const getQuestion = () => {
+    answeredQuestions.push(currentQuestion);
     currentQuestion += 1;
     if (answeredQuestions.length === questions.length) {
-        console.log("That's it!");
-        // console.log(score);
-        // let highestScore = 0;
-        // let highestScoringShip = '';
+        endQuiz();
         quiz.classList.add('hidden');
         result.classList.remove('hidden');
+    }
+}
+const startTimer = () => {
+    if (!countdown) {
+        countdown = setInterval(() => {
+            time--;
+            if (time <= 0) {
+                identifyWinner();
+            }
+        }, 20);
     }
 }
 // use array.sort() to sort the highest number once the quiz is done; have to change the key-value pairs in the array
 // might have to add a function to reset the score array to 0 after each quiz, otherwise it will keep adding to the previous score
 let ships = [ // might have to add the score functions and array to the submitAnswer function, otherwise it will only update the score for the first question
-    {nimitz: 0},
-    {forrestal: 0},
-    {kiev: 0},
-    {moskva: 0},
-    {kirov: 0},
-    {slava: 0},
-    {kara: 0},
-    {kashin: 0},
-    {sovremenny: 0},
-    {iowa: 0},
-    {ticonderoga: 0},
-    {longBeach: 0},
-    {spruance: 0},
-    {adams: 0},
-    {knox: 0},
-    {haruna: 0},
-    {tachikaze: 0},
-    {luda: 0},
-    {la: 0},
-    {kilo: 0},
-    {alfa: 0},
-    {han: 0},
-    {yushio: 0},
-    {osa: 0},
-    {aliya: 0},
-    {alvand: 0}
+    {name: nimitz,
+    score: 0},
+    {name: forrestal,
+    score: 0},
+    {name: kiev,
+    score: 0},
+    {name: moskva,
+    score: 0},
+    {name: kirov,
+    score: 0},
+    {name: slava,
+    score: 0},
+    {name: kara,
+    score: 0},
+    {name: kashin,
+    score: 0},
+    {name: sovremenny,
+    score: 0},
+    {name: iowa,
+    score: 0},
+    {name: ticonderoga,
+    score: 0},
+    {name: longBeach,
+    score: 0},
+    {name: spruance,
+    score: 0},
+    {name: adams,
+    score: 0},
+    {name: knox,
+    score: 0},
+    {name: haruna,
+    score: 0},
+    {name: tachikaze,
+    score: 0},
+    {name: luda,
+    score: 0},
+    {name: la,
+    score: 0},
+    {name: kilo,
+    score: 0},
+    {name: alfa,
+    score: 0},
+    {name: han,
+    score: 0},
+    {name: yushio,
+    score: 0},
+    {name: osa,
+    score: 0},
+    {name: aliya,
+    score: 0},
+    {name: alvand,
+    score: 0}
 ]; // index is tied to each ship, score counters increase by calling key
 const checkAnswer = (ships) => {
     // const shipScores = Object.values(ships).map(ship => Object.values(ship)[0]);
     const shipScores = ships;
     for (let question in questions) {
         if (choice === questions[0].answers[A]) {
-            ships[0].nimitz += 1;
-            ships[1].forrestal += 1;
+            shipScores[0].score += 1;
+            shipScores[1].score += 1;
         } else if (choice === questions[0].answers[B]) {
-            ships[2].kiev += 1;
-            ships[4].kirov += 1;
-            ships[11].longBeach += 1;
-            ships[9].iowa += 1;
+            shipScores[2].score += 1;
+            shipScores[4].score += 1;
+            shipScores[11].score += 1;
+            shipScores[9].score += 1;
         } else if (choice === questions[0].answers[C]) {
-            ships[3].moskva += 1;
-            ships[6].kara += 1;
-            ships[7].kashin += 1;
-            ships[5].slava += 1;
-            ships[8].sovremenny += 1;
-            ships[10].ticonderoga += 1;
-            ships[15].haruna += 1;
-            ships[16].tachikaze += 1;
-            ships[12].spruance += 1;
+            shipScores[3].score += 1;
+            shipScores[6].score += 1;
+            shipScores[7].score += 1;
+            shipScores[5].score += 1;
+            shipScores[8].score += 1;
+            shipScores[10].score += 1;
+            shipScores[15].score += 1;
+            shipScores[16].score += 1;
+            shipScores[12].score += 1;
         } else if (choice === questions[0].answers[D]) {
-            ships[18].la += 1;
-            ships[20].alfa += 1;
-            ships[21].han += 1;
-            ships[22].yushio += 1;
-            ships[13].adams += 1;
-            ships[14].knox += 1;
-            ships[17].luda += 1;
-            ships[25].alvand += 1;
+            shipScores[18].score += 1;
+            shipScores[20].score += 1;
+            shipScores[21].score += 1;
+            shipScores[22].score += 1;
+            shipScores[13].score += 1;
+            shipScores[14].score += 1;
+            shipScores[17].score += 1;
+            shipScores[25].score += 1;
         } else {
-            ships[23].osa += 1;
-            ships[24].aliya += 1;
-            ships[19].kilo += 1;
+            shipScores[23].score += 1;
+            shipScores[24].score += 1;
+            shipScores[19].score += 1;
         }
         if (choice === questions[1].answers[A]) {
-            ships[23].osa += 1;
-            ships[24].aliya += 1;
-            ships[25].alvand += 1;
+            shipScores[23].score += 1;
+            shipScores[24].score += 1;
+            shipScores[25].score += 1;
         } else if (choice === questions[1].answers[B]) {
-            ships[19].kilo += 1;
-            ships[7].kashin += 1;
-            ships[20].alfa += 1;
-            ships[16].tachikaze += 1;
-            ships[13].adams += 1;
-            ships[14].knox += 1;
-            ships[17].luda += 1;
-            ships[22].yushio += 1;
+            shipScores[19].score += 1;
+            shipScores[7].score += 1;
+            shipScores[20].score += 1;
+            shipScores[16].score += 1;
+            shipScores[13].score += 1;
+            shipScores[14].score += 1;
+            shipScores[17].score += 1;
+            shipScores[22].score += 1;
         } else if (choice === questions[1].answers[C]) {
-            ships[18].la += 1;
-            ships[6].kara += 1;
-            ships[8].sovremenny += 1;
-            ships[10].ticonderoga += 1;
-            ships[15].haruna += 1;
-            ships[12].spruance += 1;
-            ships[21].han += 1;
+            shipScores[18].score += 1;
+            shipScores[6].score += 1;
+            shipScores[8].score += 1;
+            shipScores[10].score += 1;
+            shipScores[15].score += 1;
+            shipScores[12].score += 1;
+            shipScores[21].score += 1;
         } else if (choice === questions[1].answers[D]) {
-            ships[2].kiev += 1;
-            ships[4].kirov += 1;
-            ships[11].longBeach += 1;
-            ships[9].iowa += 1;
-            ships[3].moskva += 1;
-            ships[5].slava += 1;
+            shipScores[2].score += 1;
+            shipScores[4].score += 1;
+            shipScores[11].score += 1;
+            shipScores[9].score += 1;
+            shipScores[3].score += 1;
+            shipScores[5].score += 1;
         } else {
-            ships[0].nimitz += 1;
-            ships[1].forrestal += 1;
+            shipScores[0].score += 1;
+            shipScores[1].score += 1;
         }
         if (choice === questions[2].answers[A]) {
-            ships[9].iowa += 1;
-            ships[1].forrestal += 1;
+            shipScores[9].score += 1;
+            shipScores[1].score += 1;
         } else if (choice === questions[2].answers[B]) {
-            ships[7].kashin += 1;
-            ships[11].longBeach += 1;
-            ships[23].osa += 1;
-            ships[13].adams += 1;
+            shipScores[7].score += 1;
+            shipScores[11].score += 1;
+            shipScores[23].score += 1;
+            shipScores[13].score += 1;
         } else if (choice === questions[2].answers[C]) {
-            ships[3].moskva += 1;
-            ships[20].alfa += 1;
-            ships[6].kara += 1;
-            ships[15].haruna += 1;
-            ships[14].knox += 1;
-            ships[17].luda += 1;
-            ships[21].han += 1;
-            ships[25].alvand += 1;
+            shipScores[3].score += 1;
+            shipScores[20].score += 1;
+            shipScores[6].score += 1;
+            shipScores[15].score += 1;
+            shipScores[14].score += 1;
+            shipScores[17].score += 1;
+            shipScores[21].score += 1;
+            shipScores[25].score += 1;
         } else if (choice === questions[2].answers[D]) {
-            ships[0].nimitz += 1;
-            ships[2].kiev += 1;
-            ships[18].la += 1;
-            ships[16].tachikaze += 1;
-            ships[12].spruance += 1;
+            shipScores[0].score += 1;
+            shipScores[2].score += 1;
+            shipScores[18].score += 1;
+            shipScores[16].score += 1;
+            shipScores[12].score += 1;
         } else {
-            ships[19].kilo += 1;
-            ships[4].kirov += 1;
-            ships[5].slava += 1;
-            ships[8].sovremenny += 1;
-            ships[10].ticonderoga += 1;
-            ships[22].yushio += 1;
-            ships[24].aliya += 1;
+            shipScores[19].score += 1;
+            shipScores[4].score += 1;
+            shipScores[5].score += 1;
+            shipScores[8].score += 1;
+            shipScores[10].score += 1;
+            shipScores[22].score += 1;
+            shipScores[24].score += 1;
         }
         if (choice === questions[3].answers[A]) {
-            ships[0].nimitz += 1;
-            ships[4].kirov += 1;
+            shipScores[0].score += 1;
+            shipScores[4].score += 1;
         } else if (choice === questions[3].answers[B]) {
-            ships[1].forrestal += 1;
-            ships[2].kiev += 1;
-            ships[18].la += 1;
-            ships[5].slava += 1;
-            ships[8].sovremenny += 1;
-            ships[9].iowa += 1;
+            shipScores[1].score += 1;
+            shipScores[2].score += 1;
+            shipScores[18].score += 1;
+            shipScores[5].score += 1;
+            shipScores[8].score += 1;
+            shipScores[9].score += 1;
         } else if (choice === questions[3].answers[C]) {
-            ships[19].kilo += 1;
-            ships[20].alfa += 1;
-            ships[11].longBeach += 1;
-            ships[10].ticonderoga += 1;
-            ships[23].osa += 1;
-            ships[22].yushio += 1;
+            shipScores[19].score += 1;
+            shipScores[20].score += 1;
+            shipScores[11].score += 1;
+            shipScores[10].score += 1;
+            shipScores[23].score += 1;
+            shipScores[22].score += 1;
         } else if (choice === questions[3].answers[D]) {
-            ships[6].kara += 1;
-            ships[7].kashin += 1;
-            ships[16].tachikaze += 1;
-            ships[12].spruance += 1;
-            ships[13].adams += 1;
-            ships[17].luda += 1;
-            ships[21].han += 1;
-            ships[24].aliya += 1;
-            ships[25].alvand += 1;
+            shipScores[6].score += 1;
+            shipScores[7].score += 1;
+            shipScores[16].score += 1;
+            shipScores[12].score += 1;
+            shipScores[13].score += 1;
+            shipScores[17].score += 1;
+            shipScores[21].score += 1;
+            shipScores[24].score += 1;
+            shipScores[25].score += 1;
         } else {
-            ships[3].moskva += 1;
-            ships[14].knox += 1;
-            ships[15].haruna += 1;
+            shipScores[3].score += 1;
+            shipScores[14].score += 1;
+            shipScores[15].score += 1;
         }
         if (choice === questions[4].answers[A]) {
-            ships[4].kirov += 1;
-            ships[10].ticonderoga += 1;
+            shipScores[4].score += 1;
+            shipScores[10].score += 1;
         } else if (choice === questions[4].answers[B]) {
-            ships[5].slava += 1;
-            ships[8].sovremenny += 1;
-            ships[11].longBeach += 1;
+            shipScores[5].score += 1;
+            shipScores[8].score += 1;
+            shipScores[11].score += 1;
         } else if (choice === questions[4].answers[C]) {
-            ships[0].nimitz += 1;
-            ships[2].kiev += 1;
-            ships[6].kara += 1;
-            ships[7].kashin += 1;
-            ships[16].tachikaze += 1;
-            ships[13].adams += 1;
+            shipScores[0].score += 1;
+            shipScores[2].score += 1;
+            shipScores[6].score += 1;
+            shipScores[7].score += 1;
+            shipScores[16].score += 1;
+            shipScores[13].score += 1;
         } else if (choice === questions[4].answers[D]) {
-            ships[1].forrestal += 1;
-            ships[3].moskva += 1;
-            ships[15].haruna += 1;
-            ships[12].spruance += 1;
-            ships[14].knox += 1;
-            ships[9].iowa += 1;
-            ships[24].aliya += 1;
-            ships[25].alvand += 1;
-            ships[23].osa += 1;
-            ships[17].luda += 1;
+            shipScores[1].score += 1;
+            shipScores[3].score += 1;
+            shipScores[15].score += 1;
+            shipScores[12].score += 1;
+            shipScores[14].score += 1;
+            shipScores[9].score += 1;
+            shipScores[24].score += 1;
+            shipScores[25].score += 1;
+            shipScores[23].score += 1;
+            shipScores[17].score += 1;
         } else {
-            ships[18].la += 1;
-            ships[19].kilo += 1;
-            ships[20].alfa += 1;
-            ships[21].han += 1;
-            ships[22].yushio += 1;
+            shipScores[18].score += 1;
+            shipScores[19].score += 1;
+            shipScores[20].score += 1;
+            shipScores[21].score += 1;
+            shipScores[22].score += 1;
         }
         if (choice === questions[5].answers[A]) {
-            ships[6].kara += 1;
-            ships[20].alfa += 1;
-            ships[11].longBeach += 1;
-            ships[18].la += 1;
+            shipScores[6].score += 1;
+            shipScores[20].score += 1;
+            shipScores[11].score += 1;
+            shipScores[18].score += 1;
         } else if (choice === questions[5].answers[B]) {
-            ships[4].kirov += 1;
-            ships[9].iowa += 1;
-            ships[8].sovremenny += 1;
-            ships[16].tachikaze += 1;
-            ships[13].adams += 1;
+            shipScores[4].score += 1;
+            shipScores[9].score += 1;
+            shipScores[8].score += 1;
+            shipScores[16].score += 1;
+            shipScores[13].score += 1;
         } else if (choice === questions[5].answers[C]) {
-            ships[0].nimitz += 1;
-            ships[2].kiev += 1;
-            ships[19].kilo += 1;
-            ships[5].slava += 1;
-            ships[7].kashin += 1;
-            ships[10].ticonderoga += 1;
-            ships[17].luda += 1;
-            ships[21].han += 1;
-            ships[22].yushio += 1;
+            shipScores[0].score += 1;
+            shipScores[2].score += 1;
+            shipScores[19].score += 1;
+            shipScores[5].score += 1;
+            shipScores[7].score += 1;
+            shipScores[10].score += 1;
+            shipScores[17].score += 1;
+            shipScores[21].score += 1;
+            shipScores[22].score += 1;
         } else if (choice === questions[5].answers[D]) {
-            ships[1].forrestal += 1;
-            ships[3].moskva += 1;
-            ships[15].haruna += 1;
-            ships[14].knox += 1;
-            ships[25].alvand += 1;
-            ships[23].osa += 1;
+            shipScores[1].score += 1;
+            shipScores[3].score += 1;
+            shipScores[15].score += 1;
+            shipScores[14].score += 1;
+            shipScores[25].score += 1;
+            shipScores[23].score += 1;
         } else {
-            ships[12].spruance += 1;
-            ships[24].aliya += 1;
+            shipScores[12].score += 1;
+            shipScores[24].score += 1;
         }
         if (choice === questions[6].answers[A]) {
-            ships[18].la += 1;
-            ships[19].kilo += 1;
-            ships[20].alfa += 1;
-            ships[23].osa += 1;
-            ships[25].alvand += 1;
-            ships[7].kashin += 1;
-            ships[11].longBeach += 1;
-            ships[16].tachikaze += 1;
-            ships[13].adams += 1;
-            ships[9].iowa += 1;
-            ships[17].luda += 1;
-            ships[22].yushio += 1;
-            ships[21].han += 1;
+            shipScores[18].score += 1;
+            shipScores[19].score += 1;
+            shipScores[20].score += 1;
+            shipScores[23].score += 1;
+            shipScores[25].score += 1;
+            shipScores[7].score += 1;
+            shipScores[11].score += 1;
+            shipScores[16].score += 1;
+            shipScores[13].score += 1;
+            shipScores[9].score += 1;
+            shipScores[17].score += 1;
+            shipScores[22].score += 1;
+            shipScores[21].score += 1;
         } else if (choice === questions[6].answers[B]) {
-            ships[6].kara += 1;
-            ships[5].slava += 1;
-            ships[8].sovremenny += 1;
-            ships[14].knox += 1;
+            shipScores[6].score += 1;
+            shipScores[5].score += 1;
+            shipScores[8].score += 1;
+            shipScores[14].score += 1;
         } else if (choice === questions[6].answers[C]) {
-            ships[10].ticonderoga += 1;
-            ships[12].spruance += 1;
-            ships[15].haruna += 1;
-            ships[3].moskva += 1;
-            ships[24].aliya += 1;
-            ships[4].kirov += 1;
+            shipScores[10].score += 1;
+            shipScores[12].score += 1;
+            shipScores[15].score += 1;
+            shipScores[3].score += 1;
+            shipScores[24].score += 1;
+            shipScores[4].score += 1;
         } else {
-            ships[0].nimitz += 1;
-            ships[2].kiev += 1;
-            ships[1].forrestal += 1;
+            shipScores[0].score += 1;
+            shipScores[2].score += 1;
+            shipScores[1].score += 1;
         }
         if (choice === questions[7].answers[A]) {
-            ships[0].nimitz += 1;
-            ships[1].forrestal += 1;
-            ships[10].ticonderoga += 1;
-            ships[11].longBeach += 1;
-            ships[12].spruance += 1;
-            ships[13].adams += 1;
-            ships[18].la += 1;
-            ships[9].iowa += 1;
-            ships[14].knox += 1;
+            shipScores[0].score += 1;
+            shipScores[1].score += 1;
+            shipScores[10].score += 1;
+            shipScores[11].score += 1;
+            shipScores[12].score += 1;
+            shipScores[13].score += 1;
+            shipScores[18].score += 1;
+            shipScores[9].score += 1;
+            shipScores[14].score += 1;
         } else if (choice === questions[7].answers[B]) {
-            ships[15].haruna += 1;
-            ships[16].tachikaze += 1;
-            ships[17].luda += 1;
-            ships[21].han += 1;
-            ships[22].yushio += 1;
+            shipScores[15].score += 1;
+            shipScores[16].score += 1;
+            shipScores[17].score += 1;
+            shipScores[21].score += 1;
+            shipScores[22].score += 1;
         } else if (choice === questions[7].answers[C]) {
-            ships[2].kiev += 1;
-            ships[3].moskva += 1;
-            ships[4].kirov += 1;
-            ships[5].slava += 1;
-            ships[6].kara += 1;
-            ships[7].kashin += 1;
-            ships[8].sovremenny += 1;
-            ships[19].kilo += 1;
-            ships[20].alfa += 1;
-            ships[23].osa += 1;
+            shipScores[2].score += 1;
+            shipScores[3].score += 1;
+            shipScores[4].score += 1;
+            shipScores[5].score += 1;
+            shipScores[6].score += 1;
+            shipScores[7].score += 1;
+            shipScores[8].score += 1;
+            shipScores[19].score += 1;
+            shipScores[20].score += 1;
+            shipScores[23].score += 1;
         } else {
-            ships[24].aliya += 1;
-            ships[25].alvand += 1;
+            shipScores[24].score += 1;
+            shipScores[25].score += 1;
         }
         if (choice === questions[8].answers[A]) {
-            ships[20].alfa += 1;
-            ships[17].luda += 1;
-            ships[23].osa += 1;
-            ships[25].alvand += 1;
+            shipScores[20].score += 1;
+            shipScores[17].score += 1;
+            shipScores[23].score += 1;
+            shipScores[25].score += 1;
         } else if (choice === questions[8].answers[B]) {
-            ships[1].forrestal += 1;
-            ships[6].kara += 1;
-            ships[7].kashin += 1;
-            ships[9].iowa += 1;
-            ships[13].adams += 1;
-            ships[18].la += 1;
-            ships[24].aliya += 1;
+            shipScores[1].score += 1;
+            shipScores[6].score += 1;
+            shipScores[7].score += 1;
+            shipScores[9].score += 1;
+            shipScores[13].score += 1;
+            shipScores[18].score += 1;
+            shipScores[24].score += 1;
         } else if (choice === questions[8].answers[C]) {
-            ships[0].nimitz += 1;
-            ships[2].kiev += 1;
-            ships[4].kirov += 1;
-            ships[5].slava += 1;
-            ships[8].sovremenny += 1;
-            ships[10].ticonderoga += 1;
-            ships[11].longBeach += 1;
-            ships[12].spruance += 1;
-            ships[16].tachikaze += 1;
-            ships[15].haruna += 1;
+            shipScores[0].score += 1;
+            shipScores[2].score += 1;
+            shipScores[4].score += 1;
+            shipScores[5].score += 1;
+            shipScores[8].score += 1;
+            shipScores[10].score += 1;
+            shipScores[11].score += 1;
+            shipScores[12].score += 1;
+            shipScores[16].score += 1;
+            shipScores[15].score += 1;
         } else if (choice === questions[8].answers[D]) {
-            ships[3].moskva += 1;
-            ships[21].han += 1;
-            ships[14].knox += 1;
+            shipScores[3].score += 1;
+            shipScores[21].score += 1;
+            shipScores[14].score += 1;
         } else {
-            ships[19].kilo += 1;
-            ships[22].yushio += 1;
+            shipScores[19].score += 1;
+            shipScores[22].score += 1;
         }
     }
-} 
+}
+const endQuiz = () => {
+    console.log("After careful analysis, our top scientists sourced from only our best free-range asylums have found the warship that is meant for you. Are you ready?");
+    startTimer();
+}
+const winner = [];
+const determineWinner = ships => {
+    sortedShips = ships;
+    sortedShips.sort((a, b) => a.value - b.value);
+    winner = sortedShips.slice(0, 1);
+}
+const identifyWinner = () => {
+    
+}
 
 startBtn.addEventListener('click', () => {
     startQuiz();
