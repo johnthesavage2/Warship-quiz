@@ -135,9 +135,9 @@ const startQuiz = () => {
 let answeredQuestions = [];
 const submitAnswer = () => {
     let choice = document.querySelector('input[name="answer"]:checked');
-    getQuestion();
+    checkAnswer();
 }
-const getQuestion = () => {
+/* const getQuestion = () => { Not sure if this needs to be alone or combined with response checks
     answeredQuestions.push(currentQuestion);
     currentQuestion += 1;
     if (answeredQuestions.length === questions.length) {
@@ -145,13 +145,13 @@ const getQuestion = () => {
         quiz.classList.add('hidden');
         result.classList.remove('hidden');
     }
-}
+} */
 const startTimer = () => {
     if (!countdown) {
         countdown = setInterval(() => {
             time--;
             if (time <= 0) {
-                identifyWinner();
+                showResult();
             }
         }, 20);
     }
@@ -159,63 +159,37 @@ const startTimer = () => {
 // use array.sort() to sort the highest number once the quiz is done; have to change the key-value pairs in the array
 // might have to add a function to reset the score array to 0 after each quiz, otherwise it will keep adding to the previous score
 let ships = [ // might have to add the score functions and array to the submitAnswer function, otherwise it will only update the score for the first question
-    {name: nimitz,
-    score: 0},
-    {name: forrestal,
-    score: 0},
-    {name: kiev,
-    score: 0},
-    {name: moskva,
-    score: 0},
-    {name: kirov,
-    score: 0},
-    {name: slava,
-    score: 0},
-    {name: kara,
-    score: 0},
-    {name: kashin,
-    score: 0},
-    {name: sovremenny,
-    score: 0},
-    {name: iowa,
-    score: 0},
-    {name: ticonderoga,
-    score: 0},
-    {name: longBeach,
-    score: 0},
-    {name: spruance,
-    score: 0},
-    {name: adams,
-    score: 0},
-    {name: knox,
-    score: 0},
-    {name: haruna,
-    score: 0},
-    {name: tachikaze,
-    score: 0},
-    {name: luda,
-    score: 0},
-    {name: la,
-    score: 0},
-    {name: kilo,
-    score: 0},
-    {name: alfa,
-    score: 0},
-    {name: han,
-    score: 0},
-    {name: yushio,
-    score: 0},
-    {name: osa,
-    score: 0},
-    {name: aliya,
-    score: 0},
-    {name: alvand,
-    score: 0}
+    {name: nimitz, score: 0},
+    {name: forrestal, score: 0},
+    {name: kiev, score: 0},
+    {name: moskva, score: 0},
+    {name: kirov, score: 0},
+    {name: slava, score: 0},
+    {name: kara, score: 0},
+    {name: kashin, score: 0},
+    {name: sovremenny, score: 0},
+    {name: iowa, score: 0},
+    {name: ticonderoga, score: 0},
+    {name: longBeach, score: 0},
+    {name: spruance, score: 0},
+    {name: adams, score: 0},
+    {name: knox, score: 0},
+    {name: haruna, score: 0},
+    {name: tachikaze, score: 0},
+    {name: luda, score: 0},
+    {name: la, score: 0},
+    {name: kilo, score: 0},
+    {name: alfa, score: 0},
+    {name: han, score: 0},
+    {name: yushio, score: 0},
+    {name: osa, score: 0},
+    {name: aliya, score: 0},
+    {name: alvand, score: 0}
 ]; // index is tied to each ship, score counters increase by calling key
-const checkAnswer = (ships) => {
+const checkAnswer = (ships) => { // goes through each question and awards points based on selected response
     // const shipScores = Object.values(ships).map(ship => Object.values(ship)[0]);
     const shipScores = ships;
-    for (let question in questions) {
+    for (let i in questions) {
         if (choice === questions[0].answers[A]) {
             shipScores[0].score += 1;
             shipScores[1].score += 1;
@@ -503,21 +477,32 @@ const checkAnswer = (ships) => {
             shipScores[22].score += 1;
         }
     }
+    answeredQuestions.push(currentQuestion);
+    currentQuestion += 1;
+    if (answeredQuestions.length === questions.length) {
+        endQuiz();
+        quiz.classList.add('hidden');
+        result.classList.remove('hidden');
+    }
 }
 const endQuiz = () => {
     console.log("After careful analysis, our top scientists sourced from only our best free-range asylums have found the warship that is meant for you. Are you ready?");
     startTimer();
+    determineWinner();
 }
-const winner = [];
+let runnerUps = [];
+let winner = [];
 const determineWinner = ships => {
-    sortedShips = ships;
-    sortedShips.sort((a, b) => a.value - b.value);
-    winner = sortedShips.slice(0, 1);
+    const sortedShips = ships;
+    sortedShips.sort((a, b) => a.score - b.score);
+    runnerUps = sortedShips.slice(0, 3);
+    winner = runnerUps.slice(Math.floor(Math.random() * 3), ); // need an end value for the slice method
 }
-const identifyWinner = () => {
-    
+const showResult = () => {
+    if (winner[0] === 'nimitz') {
+        nimitz.classList.remove('hidden');
+    }
 }
-
 startBtn.addEventListener('click', () => {
     startQuiz();
     getQuestion();
