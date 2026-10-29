@@ -137,15 +137,19 @@ const submitAnswer = () => {
     let choice = document.querySelector('input[name="answer"]:checked');
     checkAnswer();
 }
-/* const getQuestion = () => { Not sure if this needs to be alone or combined with response checks
-    answeredQuestions.push(currentQuestion);
-    currentQuestion += 1;
-    if (answeredQuestions.length === questions.length) {
-        endQuiz();
-        quiz.classList.add('hidden');
-        result.classList.remove('hidden');
+const getQuestion = () => {  // Not sure if this needs to be alone or combined with response checks
+    for (let i in questions) {
+        checkAnswer();
+        answeredQuestions.push(currentQuestion);
+        currentQuestion += 1;
+        if (answeredQuestions.length === questions.length) {
+            endQuiz();
+            quiz.classList.add('hidden');
+            result.classList.remove('hidden');
+        }
     }
-} */
+
+} 
 const startTimer = () => {
     if (!countdown) {
         countdown = setInterval(() => {
@@ -477,13 +481,14 @@ const checkAnswer = (ships) => { // goes through each question and awards points
             shipScores[22].score += 1;
         }
     }
-    answeredQuestions.push(currentQuestion);
+    /* answeredQuestions.push(currentQuestion);
     currentQuestion += 1;
     if (answeredQuestions.length === questions.length) {
         endQuiz();
         quiz.classList.add('hidden');
         result.classList.remove('hidden');
-    }
+    } */
+
 }
 const endQuiz = () => {
     console.log("After careful analysis, our top scientists sourced from only our best free-range asylums have found the warship that is meant for you. Are you ready?");
@@ -492,7 +497,7 @@ const endQuiz = () => {
 }
 let runnerUps = [];
 let winner = [];
-const determineWinner = ships => {
+const determineWinner = ships => { // creates new array with top 3 ships, then randomly chooses one as the winner
     const sortedShips = ships;
     sortedShips.sort((a, b) => a.score - b.score);
     runnerUps = sortedShips.slice(0, 3);
