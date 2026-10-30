@@ -502,6 +502,8 @@ const determineWinner = ships => { // creates new array with top 3 ships, then r
     sortedShips.sort((a, b) => a.score - b.score);
     runnerUps = sortedShips.slice(0, 3);
     winner = runnerUps.slice(Math.floor(Math.random() * 3), ); // need an end value for the slice method
+    // const x = Math.floor(Math.random() * 3)
+    // winner = runnerUps.slice(x, x + 1)
 }
 const showResult = () => {
     if (winner[0] === 'nimitz') {
