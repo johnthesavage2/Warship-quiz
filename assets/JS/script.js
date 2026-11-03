@@ -12,94 +12,103 @@ const quiz = document.getElementById('quiz');
 const quizContainer = document.getElementById('quiz-container');
 let currentQuestion = 0;
 let choice = '';
-let questions = [
+const questions = [
     {
-        question: 'Would you want to have your partner taller or shorter than you?',
-        answers: {
-            A: 'Reach for the sky!', // Nimitz, Forrestal
-            B: "They're on top shelf duty", // Kiev, Kirov, Long Beach, Iowa
-            C: 'About the same height', // Moskva, Kara, Kashin, Slava, Sovremenny, Tico, Haruna, Tachikaze, Spruance
-            D: 'Short king/ queen/ non-binary royalty FTW!', // LA, Alfa, Alvand, Han, Yushio, Adams, Knox, Luda
-            E: "I'm Snow White and they're the (one?) dwarf" // Osa, Aliya, Kilo
-        }
+        id: 'height',
+        text: 'Would you want to have your partner taller or shorter than you?',
+        answers: [
+            {text: 'Reach for the sky!', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}]},
+            {text: "They're on top shelf duty", scores: [{shipId: ships.kiev.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.iowa.id, score: 1}]},
+            {text: 'About the same height', scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}]},
+            {text: 'Short king/ queen/ non-binary royalty FTW!', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.alvand.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.luda.id, score: 1}]},
+            {text: "I'm Snow White and they're the (one?) dwarf", scores: [{shipId: ships.osa.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.kilo.id, score: 1}]}
+        ]
     },
     {
-        question: 'What size would you want your partner to be?',
-        answers: {
-            A: 'A twig', // Osa, Aliya, Alvand
-            B: 'A large branch?', // Kilo, Kashin, Alfa, Tachikaze, Adams, Knox, Luda, Yushio
-            C: 'What about average?', // LA, Kara, Sovremenny, Tico, Haruna, Spruance, Han
-            D: 'THICK THIGHS (OR CHESTS) SAVE LIVES!', // Kiev, Kirov, Long Beach, Iowa, Moskva, Slava
-            E: 'Please... I want you to crush me' // Nimitz, Forrestal
-        }
+        id: 'size',
+        text: 'What size would you want your partner to be?',
+        answers: [
+            {text: 'A twig', scores: [{shipId: ships.osa.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
+            {text: 'A large branch?', scores: [{shipId: ships.kilo.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
+            {text: 'What about average?', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.han.id, score: 1}]},
+            {text: 'THICK THIGHS (OR CHESTS) SAVE LIVES!', scores: [{shipId: ships.kiev.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.slava.id, score: 1}]},
+            {text: 'Please... I want you to crush me', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}]}
+        ]
     },
     {
-        question: 'How old would you want your partner to be, relative to yourself?',
-        answers: {
-            A: '#GraveRobber', // Iowa, Forrestal
-            B: '*ack* Um, Mommy? Sorry, Mommy?', // Kashin, Long Beach, Osa, Adams
-            C: 'Literally born on the same day as me', // Moskva, Alfa, Kara, Haruna, Knox, Luda, Han, Alvand
-            D: '"Find me in the mountains, cause Im a cougar"', // Nimitz, Kiev, LA, Tachikaze, Spruance, 
-            E: "Why shouldn't I rob the cradle?" // Kilo, Kirov, Slava, Sovremenny, Tico, Yushio, Aliya
-        }
+        id: 'age',
+        text: 'How old would you want your partner to be, relative to yourself?',
+        answers: [
+            {text: '#GraveRobber', scores: [{shipId: ships.iowa.id, score: 1}, {shipId: ships.forrestal.id, score: 1}]},
+            {text: '*ack* Um, Mommy? Sorry, Mommy?', scores: [{shipId: ships.kashin.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.adams.id, score: 1}]},
+            {text: 'Literally born on the same day as me', scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
+            {text: '"Find me in the mountains, cause Im a cougar"', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}]},
+            {text: "Why shouldn't I rob the cradle?", scores: [{shipId: ships.kilo.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.aliya.id, score: 1}]}
+        ]
     },
     {
-        question: 'How outgoing would you like your partner to be?', // Come back to this one
-        answers: {
-            A: "The party don't start 'till they walk in", // Nimitz, Kirov
-            B: 'Designated Hype Man', // Forrestal, Kiev, LA, Slava, Sovremenny, Iowa
-            C: 'Being the center of attention... every now and again', // Kilo, Alfa, Long Beach, Tico, Osa, Yushio
-            D: "Good at conversations and friendly, but doesn't draw a scene", // Kara, Kashin, Tachikaze, Spruance, Adams, Luda, Han, Aliya, Alvand
-            E: 'The quiet one in the corner, plotting their escape' // Haruna, Moskva, Knox
-        }
+        id: 'outgoing',
+        text: 'How outgoing would you like your partner to be?',
+        answers: [
+            {text: "The party don't start 'till they walk in", scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kirov.id, score: 1}]},
+            {text: 'Designated Hype Man', scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.iowa.id, score: 1}]},
+            {text: 'Being the center of attention... every now and again', scores: [{shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
+            {text: "Good at conversations and friendly, but doesn't draw a scene", scores: [{shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
+            {text: 'The quiet one in the corner, plotting their escape', scores: [{shipId: ships.haruna.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.knox.id, score: 1}]}
+        ]
     },
     {
-        question: 'A stranger slaps your ass in public. How would you want your partner to react?', // Maybe add a sixth option here, come back to this
-        answers: {
-            A: 'Fisticuffs, pepper spray, hand grenade, the works', // Kirov, Tico
-            B: 'Slaps their ass back, then squares up', // Slava, Sovremenny, Long Beach
-            C: 'Throws them a dirty look, "What the hell, dude?"', // Nimitz, Kiev, Kara, Kashin, Tachikaze, Adams,
-            D: '"Are you ok? Lets get out of here."', // Forrestal, Moskva, Haruna, Spruance, Knox, Iowa, Aliya, Alvand, Osa, Luda
-            E: 'Follows them, finds their car, slashes their tires' // LA, Kilo, Alfa, Yushio, Han, 
-        }
+        id: 'reaction',
+        text: 'A stranger slaps your ass in public. How would you want your partner to react?',
+        answers: [
+            {text: 'Fisticuffs, pepper spray, hand grenade, the works', scores: [{shipId: ships.kirov.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}]},
+            {text: 'Slaps their ass back, then squares up', scores: [{shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.longbeach.id, score: 1}]},
+            {text: 'Throws them a dirty look; "What the hell, dude?"', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.adams.id, score: 1}]},
+            {text: '"Are you ok? Lets get out of here."', scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.alvand.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.luda.id, score: 1}]},
+            {text: 'Follows them, finds their car, slashes their tires', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.han.id, score: 1}]}
+        ]
     },
     {
-        question: "How important is your partner's appearance for you?", 
-        answers: {
-            A: "If they're not a supermodel, I'm not interested", // Kara, Alfa, Long Beach, LA
-            B: 'I want my friends to be a *little* jealous', // Kirov, Iowa, Sovremenny, Tachikaze, Adams
-            C: "It's what's on the inside that matters", // Nimitz, Kiev, Kilo, Slava, Kashin, Tico, Luda, Han, Yushio
-            D: "Everyone's beautiful in their own way", // Forrestal, Moskva, Haruna, Osa, Knox, Alvand
-            E: ';)' // Spruance, Aliya
-        }
+        id: 'appearance',
+        text: "How important is your partner's appearance for you?",
+        answers: [
+            {text: "If they're not a supermodel, I'm not interested", scores: [{shipId: ships.kara.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.la.id, score: 1}]},
+            {text: 'I want my friends to be a *little* jealous', scores: [{shipId: ships.kirov.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.adams.id, score: 1}]},
+            {text: "It's what's on the inside that matters", scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
+            {text: "Everyone's beautiful in their own way", scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
+            {text: ';)', scores: [{shipId: ships.spruance.id, score: 1}, {shipId: ships.aliya.id, score: 1}]}
+        ]
     },
     {
-        question: 'How many kids would you want with your partner?',
-        answers: {
-            A: 'Zero, thank you very much', // LA, Kilo, Alfa, Kashin, Long Beach, Tachikaze, Osa, Adams, Iowa, Han, Yushio, Luda, Alvand
-            B: 'Just one', // Kara, Slava, Sovremenny, Knox
-            C: "2-4 isn't too many", // Moskva, Kirov, Tico, Haruna, Spruance, Aliya
-            D: '"God wants us to repopulate the Earth" number of kids' // Nimitz, Forrestal, Kiev
-        }
+        id: 'kids',
+        text: 'How many kids would you want with your partner?',
+        answers: [
+            {text: 'Zero, thank you very much', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
+            {text: 'Just one', scores: [{shipId: ships.kara.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.knox.id, score: 1}]},
+            {text: "2-4 isn't too many", scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.aliya.id, score: 1}]},
+            {text: '"God wants us to repopulate the Earth" number of kids', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}, {shipId: ships.kiev.id, score: 1}]}
+        ]
     },
     {
-        question: "You're going out to eat with your partner, and you get to choose. Which of these places are you going?",
-        answers: {
-            A: 'A steakhouse', // Nimitz, Forrestal, Tico, Long Beach, Spruance, Adams, LA, Iowa, Knox
-            B: 'A sushi bar', // Haruna, Tachikaze, Luda, Han, Yushio
-            C: 'Authentic Ukranian restaurant', // Kiev, Moskva, Kirov, Slava, Kilo, Alfa, Kara, Kashin, Sovremenny, Osa
-            D: 'Mediterranean cuisine' // Alvand, Aliya
-        }
+        id: 'restaurant',
+        text: "You're going out to eat with your partner, and you get to choose. Which of these places are you going?",
+        answers: [
+            {text: 'A burger joint', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.knox.id, score: 1}]},
+            {text: 'A sushi bar', scores: [{shipId: ships.haruna.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
+            {text: 'Authentic Ukranian restaurant', scores: [{shipId: ships.kiev.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.osa.id, score: 1}]},
+            {text: 'Mediterranean cuisine', scores: [{shipId: ships.alvand.id, score: 1}, {shipId: ships.aliya.id, score: 1}]}
+        ]
     },
     {
-        question: 'Would you want your partner to be a more fast-paced or slow-paced person?',
-        answers: {
-            A: '#RiseAndGrind', // Alfa, Luda, Osa, Alvand 
-            B: 'A real go-getter', // Forrestal, LA, Kara, Kashin, Adams, Iowa, Aliya
-            C: 'Life is all about balance', // Nimitz, Kiev, Kirov, Slava, Sovremenny, Tico, Long Beach, Haruna, Tachikaze, Spruance
-            D: 'Takes a scenic detour now and again', // Moskva, Knox, Han
-            E: '"Goals? What are those?"' // Yushio, Kilo
-        }
+        id: 'pace',
+        text: 'Would you want your partner to be a more fast-paced or slow-paced person?',
+        answers: [
+            {text: '#RiseAndGrind', scores: [{shipId: ships.alfa.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
+            {text: 'A real go-getter', scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.aliya.id, score: 1}]},
+            {text: 'Life is all about balance', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}]},
+            {text: 'Takes a scenic detour now and again', scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.han.id, score: 1}]},
+            {text: '"Goals? What are those?"', scores: [{shipId: ships.yushio.id, score: 1}, {shipId: ships.kilo.id, score: 1}]}
+        ]
     }
 ]
 const startQuiz = () => {
@@ -141,63 +150,63 @@ const ships = {
         image: '/assets/images/Nimitz result.jpg',
         score: 0,
         name: 'USS Nimitz',
-        description: 'Displacing over 100,000 tons and over 1,000 feet long, this Nimitz-class carrier is an ABSOLUTE UNIT! She might never walk down the catwalk at New York Fashion Week, but she has all the space you need to start your comically oversized family, with plenty of hangar space to spare. While not the type of ship to end a fight, her massive amount of "kids" makes her presence known to all around her, even your sworn enemies. Built in 1975, shes still going strong today, and her speed of 32 knots makes her fast for her impressive size.',
+        description: 'Displacing over 100,000 tons and over 1,000 feet long, this Nimitz-class carrier is an ABSOLUTE UNIT! She might never walk down the catwalk at New York Fashion Week, but she has all the space you need to start your comically oversized family, with plenty of hangar space to spare. While not the type of ship to end a fight, her massive amount of "kids" makes her presence known to all around her, even your sworn enemies. Built in 1975, this American behemoth still going strong today, and her speed of 32 knots makes her fast for her impressive size.',
     },
     forrestal: {
         id: 'forrestal',
         image: '/assets/images/Forrestal result.jpg',
         score: 0,
         name: "USS Forrestal",
-        description: "A Forrestal-class aircraft carrier who, being built in 1955, has all the age and experience you could ever want in a partner. Weighing over 60,000 tons and over 1,000 feet long, there is plenty of her to go around. At 33 knots, she's a speedy ship, and her huge 'hangars' are perfect for all your personal and familial needs. Her large aircraft complement means she will love to start a fight, even if she can't necessarily finish it."
+        description: "A Forrestal-class aircraft carrier who, being built in 1955, has all the age and experience you could ever want in a partner. Weighing over 60,000 tons and over 1,000 feet long, there is plenty of this American beast to go around. At 33 knots, she's a speedy ship, and her huge 'hangars' are perfect for all your personal and familial needs. Her large aircraft complement means she will love to start a fight, even if she can't necessarily finish it. Just don't take too many pictures from the wrong angle, or she might get a little self-conscious."
     },
     kiev: {
         id: 'kiev',
         image: '/assets/images/Kiev result.jpg',
         score: 0,
         name: 'TAVKR Kiev',
-        description: "The first Kiev-class aircraft carrier, although she'll tell you she's a 'large aviation cruiser' (sure, whatever). Equipped with helicopters and light aircraft, she's great at digging up the tea on others, and she has plenty of ways to defend herself if that gets her into trouble. Built in 1975, she's a young and energetic ship, even if her modest aircraft means she won't easily engage in a fight. She can hold up to 30 aircraft, making her ideal to start your own little traditional Russian family. At 45,000 tons and 900 feet long, she's perfect for someone who wants a little more to hold onto, and her speed of 32 knots means she can both get shit done while also enjoying the little things in life."
+        description: "The first Kiev-class aircraft carrier, although she and her Russian friends will tell you she's a 'large aviation cruiser' (sure, whatever). Equipped with helicopters and light aircraft, she's great at digging up the tea on others, and she has plenty of ways to defend herself if that gets her into trouble. Built in 1975, she's a young and energetic ship, even if her modest aircraft means she won't easily engage in a fight. She can hold up to 30 aircraft, making her ideal to start your own little traditional Russian family. At 45,000 tons and 900 feet long, she's perfect for someone who wants a little more to hold onto, and her speed of 32 knots means she can both get shit done while also enjoying the little things in life."
     },
     moskva: {
         id: 'moskva',
         image: '/assets/images/Moskva result.jpg',
         score: 0,
         name: 'PKR Moskva',
-        description: "A Moskva-class helicopter carrier that might get overlooked among the 'big' and 'important' supercarriers, but she's got a lot of heart. At *only* 12,000 tons and about 600 feet long, there's not too much to her, but being built in 1967, she has plenty of life experience with which to guide your relationship. She might not look the part of a Hollywood actress, but her hanger space would be great to start a small family. Not really built for fighting, either to start or end a conflict, and with a respectable if slower speed of 28 knots, she's perfect if you're looing for a quiet life with a partner who will always be there for you, even if she is never the life of the party. Be careful though, she's liable to fall over without warning, so always be on your guard!"
+        description: "A Moskva-class helicopter carrier that might get overlooked among the 'big' and 'important' supercarriers, but she's got a lot of heart. At *only* 12,000 tons and about 600 feet long, there's not too much to her, but being built in 1967, she has plenty of life experience with which to guide your relationship. She might not look the part of a dashing Russian actress, but her hanger space would be great to start a small family. Not really built for fighting, either to start or end a conflict, and with a respectable if slower speed of 28 knots, she's perfect if you're looing for a quiet life with a partner who will always be there for you, even if she is never the life of the party. Be careful though, she's liable to fall over without warning, so always be on your guard!"
     },
     kirov: {
         id: 'kirov',
         image: '/assets/images/Kirov result.jpg',
         score: 0,
         name: 'TARKR Kirov',
-        description: "The mighty Kirov! Lead ship of the Kirov-class large missile cruisers, she is the largest surface combatant built since WW2. Weighing in at a whopping 24,000 tons, and over 800 feet long, she's a big ship who knows how to get things going. With 20 long-range anti-ship missiles, and a range of self-defense weapons, she can start and end anything she wants, looking both dangerous and classy at the same time. First built in 1980, she's a newcomer to the dating scene, but her hull-mounter hanger can fit plenty of 'kids' and her speed of 32 knots means she can quickly duck and cover if things get a little too spicy. But it's Kirov. She loves it when it's spicy."
+        description: "The mighty Kirov! Lead ship of the Kirov-class large missile cruisers, she is the largest surface combatant built since WW2. Weighing in at a whopping 24,000 tons, and over 800 feet long, this Soviet monster is a big ship who knows how to get things going. With 20 long-range anti-ship missiles, and a range of self-defense weapons, she can start and end anything she wants, looking both dangerous and classy at the same time. First built in 1980, she's a newcomer to the dating scene, but her hull-mounter hanger can fit plenty of 'kids' and her speed of 32 knots means she can quickly duck and cover if things get a little too spicy. But it's Kirov. She loves it when it's spicy."
     },
     slava: {
         id: 'slava',
         image: '/assets/images/Slava result.jpg',
         score: 0,
         name: 'RKR Slava',
-        description: "The first Slava-class missile cruiser, and coming in at 9,300 tons, she's a little thicc compared to most of the other ships around, but is always in her big sibling Kirov's shadow. And no, she isn't self-conscious about it, thank you very much. Her 16 Sandbox anti-ship missiles really aren't easy on the eyes, but she's determined to prove that she can get a party started just as well as her big sibling. And with an array of defensive weapons and a 32 knot speed, she can also resolve sticky situations if the need arises. Built in 1982, it'd be hard to find someone younger than her, and her small hanger space means she'll never want a large family."
+        description: "The first Slava-class missile cruiser, and coming in at 9,300 tons, she's a little thicc compared to most of the other ships around, but is always in her big sibling Kirov's shadow. And no, she isn't self-conscious about it, thank you very much. Her 16 Sandbox anti-ship missile launchers really aren't easy on the eyes, but she's determined to prove that she can get a party started just as well as her big sibling. And with an array of defensive weapons and a 32 knot speed, this Soviet dark horse can also resolve sticky situations if the need arises. Built in 1982, it'd be hard to find someone younger than her, and her small hanger space means she'll have space for a small family, but don't get too ambitious!."
     },
     kara: {
         id: 'kara',
         image: '/assets/images/Kara result.jpg',
         score: 0,
         name: 'BPK Nikolayev',
-        description: "Graceful yet formidable, this Kara-class cruiser is the jack of all trades in the warship dating scene. At 8,200 tons and 560 feet long, her size and length aren't particularly noteworthy, but her 34 knot top speed and single hanger means she can start a family and keep it going through all of life's twists and turns. Like the gorgeous cashier at your local supermarket, she might not look like she'll get into hot water, but her array of weapons, both offensive and defensive, might surprise you! First built in 1971, she's just the right age for anyone who doesn't want someone too inexperienced or too old to be fun."
+        description: "Graceful yet formidable, this Kara-class cruiser is the jack of all trades in the warship dating scene. At 8,200 tons and 560 feet long, her size and length aren't particularly noteworthy, but her 34 knot top speed and single hanger means she can start a family and keep it going through all of life's twists and turns. Like the gorgeous cashier at your local supermarket, she might not look like she'll get into hot water, but her array of weapons, both offensive and defensive, might surprise you! First built in 1971 for the Soviet Navy, she's just the right age for anyone who doesn't want someone too inexperienced or too old to be fun."
     },
     kashin: {
         id: 'kashin',
         image: '/assets/images/Kashin result.jpg',
         score: 0,
         name: 'BPK Otvazhny',
-        description: "This Kashin-class destroyer is ready for an adventure! First built in 1962, she's been around the block a few times, and isn't here to play games. At 470 feet but only 3,400 tons, she's perfect if you're looking for someone tall and skinny! At 34 knots, she knows where she wants to go in life, and there's no room for kids in a relationship with her. Otherwise, she'll mostly keep to herself, but soon you'll notice how beautiful she is and just how dependable she can be, even if she's quietly supporting her friends and family in the background. A cute little ship that you can always count on, what's not to love?"
+        description: "This Soviet Kashin-class destroyer is ready for an adventure! First built in 1962, she's been around the block a few times, and isn't here to play games. At 470 feet but only 3,400 tons, she's perfect if you're looking for someone tall and skinny! At 34 knots, she knows where she wants to go in life, and there's no room for kids in a relationship with her. Otherwise, she'll mostly keep to herself, but soon you'll notice how beautiful she is and just how dependable she can be, even if she's quietly supporting her friends and family in the background. A cute little ship that you can always count on, what's not to love?"
     },
     sovremenny: {
         id: 'sovremenny',
         image: '/assets/images/Sovremenny result.jpg',
         score: 0,
         name: 'EM Besstrashny',
-        description: "Besstrashny means fearless, and let me tell you, this maverick has no fear! One of the Sovremenny-class destroyers, this young thing is coming out swinging, and good luck if you get in her way! At *only* 6,600 tons and just over 500 feet long, she might seem unremarkable, but her deadly Sunburn anti-ship missiles would make even a Kirov or Ticonderoga quake in their stern! Add onto that an instinctive ability to defend herself thanks to a top-of-the-line missile system and a top speed of 32 knots, and you've found a partner who can punch well above her weight. Combined with her flattering twin 5-inch guns and a style like she models for Calvin Klein on the side, she will sweep you off your feet from the moment you are blessed enough to lay eyes on her. First built in 1980, she has plenty of fight still in her, too."
+        description: "Besstrashny means fearless, and let me tell you, this maverick has no fear! One of the Soviet Sovremenny-class destroyers, this young thing is coming out swinging, and good luck if you get in her way! At *only* 6,600 tons and just over 500 feet long, she might seem unremarkable, but her deadly Sunburn anti-ship missiles would make even a Kirov or Ticonderoga quake in their stern! Add onto that an instinctive ability to defend herself thanks to a top-of-the-line missile system and a top speed of 32 knots, and you've found a partner who can punch well above her weight. Combined with her flattering twin 5-inch guns and a style like she models for Calvin Klein on the side, she will sweep you off your feet from the moment you are blessed enough to lay eyes on her. First built in 1980, she has plenty of fight still in her, too."
     },
     iowa: {
         id: 'iowa',
@@ -218,14 +227,14 @@ const ships = {
         image: '/assets/images/Long Beach result.jpg',
         score: 0,
         name: 'USS Long Beach',
-        description: "All Hail the Mighty S E A C U B E! USS Long Beach, the only ship of her class, is a ship that demands attention! Her distinctive bridge superstructure, meant to house experimental radars, is such an eyesore that it comes all the way around to being gorgeous, helped by her 720 feet long, cruiser-style hull. and over 15,000 tons in displacement, she's a little on the bigger side, if you don't mind that. First built in 1961, she's on the older side, and has seen her fair share of the world. Heavily armed and updated throughout her service, she loves both having fun and getting in and out of trouble, and while not interested in having many kids or taking life too fast, she'd be perfect if traveling the world is your joy in life."
+        description: "All Hail the Mighty S E A C U B E! USS Long Beach, the only ship of her class, is a ship that demands attention! Her distinctive bridge superstructure, meant to house experimental radars, is such an eyesore that it comes all the way around to being gorgeous, helped by her 720 feet long, cruiser-style hull. and over 15,000 tons in displacement, she's a little on the bigger side, if you don't mind that. First built in 1961, she's on the older side, and like many spoiled Americans, has seen her fair share of the world. Heavily armed and updated throughout her service, she loves both having fun and getting in and out of trouble, and while not interested in having many kids or taking life too fast, she'd be perfect if traveling the world is your joy in life."
     },
     spruance: {
         id: 'spruance',
         image: '/assets/images/Spruance result.jpg',
         score: 0,
         name: 'USS Spruance',
-        description: "The first of the Spruance-class destroyers, USS Spruance might look like someone piled a bunch of UPS boxes on top of a ship's hull, but this modest ship has it where it counts. Lightly armed and not possessing many defensive systems, you won't see her getting smashed in a bar or networking with 'important' people, but her strength is in doing the unglamorous and overlooked work that others might ignore. At about 8,000 tons and about 560 feet long, her physical characteristics are average, and at 32 knots, she finds a balance in living life. First built in 1975, she's relatively young, and her large hanger and quiet confidence means she's perfect for starting a family."
+        description: "The first of the Spruance-class destroyers, USS Spruance might look like someone piled a bunch of UPS boxes on top of a ship's hull, but this modest ship has it where it counts. Lightly armed and not possessing many defensive systems, you won't see this American workhorse getting smashed in a bar or networking with 'important' people, but her strength is in doing the unglamorous and overlooked work that others might ignore. At about 8,000 tons and about 560 feet long, her physical characteristics are average, and at 32 knots, she finds a balance in living life. First built in 1975, she's relatively young, and her large hanger and quiet confidence means she's perfect for starting a family."
     },
     adams: {
         id: 'adams',
@@ -239,7 +248,7 @@ const ships = {
         image: '/assets/images/Knox result.jpg',
         score: 0,
         name: 'USS Knox',
-        description: "The first ship of the numerous American Knox-class frigates (there were 46 built), and a quiet individual. She wasn't really built for an exciting life, so don't expect to find her in the club or cornering the stock market. Having only basic defenses, she was built to hunt submarines in the Atlantic, so she's more of a prowler than a brawler. At 4,000 tons and 400 feet long, she's understandably small, and not likely to wow you at first sight. That said, moving at a stately 27 knots and with a decently sized aircraft hangar, she's an ideal partner for anyone who cares more about enjoying life and building a small family than impressing others or making waves (no pun intended)."
+        description: "The first ship of the numerous American Knox-class frigates (there were 46 built), and a quiet individual. She wasn't really built for an exciting life, so don't expect to find her screaming in the club or cornering the stock market. Having only basic defenses, she was built to hunt submarines in the Atlantic, so she's more of a prowler than a brawler. At 4,000 tons and 400 feet long, she's understandably small, and not likely to wow you at first sight. That said, moving at a stately 27 knots and with a decently sized aircraft hangar, she's an ideal partner for anyone who cares more about enjoying life and building a small family than impressing others or making waves (no pun intended)."
     },
     haruna: {
         id: 'haruna',
@@ -253,7 +262,7 @@ const ships = {
         image: '/assets/images/Tachikaze result.jpg',
         score: 0,
         name: 'JS Tachikaze',
-        description: "First of the Japanese Tachikaze-class guided missile destroyers, the Tachikaze may not seem like much, but she's a force to be reckoned with in the right situations. Built in 1976, she's relatively new to the scene, and is full of energy! With advanced computers and sensor systems, it's easy for her to spot trouble, and she has a good chance of making it out unscathed. She generally prefers American styles, but might be ashamed to admit it out of fear of embarrassing her Japanese heritage. At 32 knots, she's ready to live life to the fullest, but has time for the quieter things, evidenced by her name, which translates to 'standing wind.' She's 3,800 tons and 470 feet long, which means she's tall and skinny, and she's intelligently laid out, giving a confident appearance. She knows what she's doing, and you won't forget that."
+        description: "First of the Tachikaze-class guided missile destroyers, the Tachikaze may not seem like much, but she's a force to be reckoned with in the right situations. Built in 1976, she's relatively new to the scene, and is full of energy! With advanced computers and sensor systems, it's easy for her to spot trouble, and she has a good chance of making it out unscathed. She generally prefers American styles, but might be ashamed to admit it out of fear of embarrassing her Japanese heritage. At 32 knots, she's ready to live life to the fullest, but has time for the quieter things, evidenced by her name, which translates to 'standing wind.' She's 3,800 tons and 470 feet long, which means she's tall and skinny, and she's intelligently laid out, giving a confident appearance. She knows what she's doing, and you won't forget that."
     },
     luda: {
         id: 'luda',
@@ -295,14 +304,14 @@ const ships = {
         image: '/assets/images/Yushio result.jpg',
         score: 0,
         name: 'JS Yushio',
-        description: "JS Yushio, the first of the Yushio-class submarines of the Japanese Navy, is a fine blend of old and new! Built with the modern teardrop hull, but powered by the tried and true diesel-electric powerplant that powered the first submarines, she can reach a top speed of 20 knots. Yeah you'll need to be well prepared to get her to do anything substantial! Weighing in at 2,200 tons and with a length of 250 feet, you won't have a problem throwing her over your shoulder should she ever get out of line! Perfectly equipped to engage in social situations, she might be a bit avoidant to solving sticky situations. Built in 1980, she has a long road ahead of her and has a lot to learn!"
+        description: "JS Yushio, the first of the Yushio-class submarines of the Japanese Navy, is a fine blend of old and new! Built with the modern teardrop hull, but powered by the tried and true diesel-electric powerplant that powered the first submarines, she can reach a top speed of 20 knots. Yeah you'll need to be well prepared to get her to do anything substantial! Weighing in at 2,200 tons and with a length of 250 feet, you won't have a problem throwing her over your shoulder should she ever get out of line! Perfectly equipped to engage in social situations, she might be a bit avoidant to solving sticky situations. Built in 1980, this Asian beauty has a long road ahead of her and has a lot to learn!"
     },
     osa: {
         id: 'osa',
         image: '/assets/images/Osa result.jpg',
         score: 0,
         name: 'R-118',
-        description: "One of the MANY Soviet Osa-class missile boats (and by many, I mean, like, over 400), R-118 isn't 'like the other ships'. The fact that she's slightly larger than your average football in length (130 feet long) and displacement (210 tons) means that she has a lot to prove! But trust me, don't try provoking her. She might be small, but at 38 knots, she's fast, and if you rub her the wrong way, she and dozens of her look-alike siblings will brew up a storm with their cloud of anti-ship missiles. She won't do much to justify herself though, probably just glare at you, menacingly. First built in 1960, she's probably old enough to learn that that's the best way to get her point across. She might look like a carbon copy of all the quirky ships around, but she still has some charm to her that you'll grow to love."
+        description: "One of the MANY Soviet Osa-class missile boats (and by many, I mean, like, over 400), R-118 isn't 'like the other ships'. The fact that she's slightly larger than your average football in length (130 feet long) and displacement (210 tons) means that she has a lot to prove! But trust me, don't try provoking her. She might be small, but at 38 knots, she's fast, and if you rub her the wrong way, she and dozens of her look-alike siblings will brew up a storm with their cloud of anti-ship missiles. She won't do much to defend herself though, probably just glare at you, menacingly. First built in 1960, she's probably old enough to learn that that's the best way to get her point across. This Soviet menace might look like a carbon copy of all the quirky ships around, but she still has some charm to her that you'll grow to love."
     },
     aliya: {
         id: 'aliya',
