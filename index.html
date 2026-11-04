@@ -22,8 +22,18 @@
                 <button type="submit" id="start-btn">Start</button>
             </div>
             <div id="quiz" class="hidden">
+                <h2 id="question"></h2>
+                <form id="answers">
+                    <label><input type="radio" name="answer" value="A"><span id="answerA">A</span></label>
+                    <label><input type="radio" name="answer" value="B"><span id="answerB">B</span></label>
+                    <label><input type="radio" name="answer" value="C"><span id="answerC">C</span></label>
+                    <label><input type="radio" name="answer" value="D"><span id="answerD">D</span></label>
+                    <label><input type="radio" name="answer" value="E"><span id="answerE">E</span></label>
+                </form>
+                <button type="submit" id="submit-btn">Submit</button>
             </div>
-            <button type="submit" id="submit-btn">Submit</button>
+            <div id="clock" class="hidden">
+                <p><span id="time">20</span></p>
             <div id="result" class="hidden">
                 <!-- <p>After x amount of seconds, our top scientists from our best free-range asylums have found the warship that is meant for you! Are you ready?</p> -->
             </div>

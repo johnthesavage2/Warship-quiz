@@ -7,9 +7,10 @@ const answerC = document.getElementsByClassName('C');
 const answerD = document.getElementsByClassName('D');
 const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
-const result = document.getElementById('result');
+// const result = document.getElementById('result');
 const quiz = document.getElementById('quiz');
 const quizContainer = document.getElementById('quiz-container');
+let time = 20;
 let currentQuestion = 0;
 let choice = '';
 const questions = [
@@ -17,97 +18,97 @@ const questions = [
         id: 'height',
         text: 'Would you want to have your partner taller or shorter than you?',
         answers: [
-            {text: 'Reach for the sky!', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}]},
-            {text: "They're on top shelf duty", scores: [{shipId: ships.kiev.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.iowa.id, score: 1}]},
-            {text: 'About the same height', scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}]},
-            {text: 'Short king/ queen/ non-binary royalty FTW!', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.alvand.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.luda.id, score: 1}]},
-            {text: "I'm Snow White and they're the (one?) dwarf", scores: [{shipId: ships.osa.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.kilo.id, score: 1}]}
+            {text: 'Reach for the sky!', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.forrestal.id, amount: 1}]},
+            {text: "They're on top shelf duty", scores: [{shipId: ships.kiev.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}]},
+            {text: 'About the same height', scores: [{shipId: ships.moskva.id, amount: 1}, {shipId: ships.kara.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}]},
+            {text: 'Short king/ queen/ non-binary royalty FTW!', scores: [{shipId: ships.la.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}, {shipId: ships.han.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}, {shipId: ships.adams.id, amount: 1}, {shipId: ships.knox.id, amount: 1}, {shipId: ships.luda.id, amount: 1}]},
+            {text: "I'm Snow White and they're the (one?) dwarf", scores: [{shipId: ships.osa.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}, {shipId: ships.kilo.id, amount: 1}]}
         ]
     },
     {
         id: 'size',
         text: 'What size would you want your partner to be?',
         answers: [
-            {text: 'A twig', scores: [{shipId: ships.osa.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
-            {text: 'A large branch?', scores: [{shipId: ships.kilo.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
-            {text: 'What about average?', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.han.id, score: 1}]},
-            {text: 'THICK THIGHS (OR CHESTS) SAVE LIVES!', scores: [{shipId: ships.kiev.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.slava.id, score: 1}]},
-            {text: 'Please... I want you to crush me', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}]}
+            {text: 'A twig', scores: [{shipId: ships.osa.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}]},
+            {text: 'A large branch?', scores: [{shipId: ships.kilo.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.adams.id, amount: 1}, {shipId: ships.knox.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}]},
+            {text: 'What about average?', scores: [{shipId: ships.la.id, amount: 1}, {shipId: ships.kara.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}, {shipId: ships.han.id, amount: 1}]},
+            {text: 'THICK THIGHS (OR CHESTS) SAVE LIVES!', scores: [{shipId: ships.kiev.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}, {shipId: ships.moskva.id, amount: 1}, {shipId: ships.slava.id, amount: 1}]},
+            {text: 'Please... I want you to crush me', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.forrestal.id, amount: 1}]}
         ]
     },
     {
         id: 'age',
         text: 'How old would you want your partner to be, relative to yourself?',
         answers: [
-            {text: '#GraveRobber', scores: [{shipId: ships.iowa.id, score: 1}, {shipId: ships.forrestal.id, score: 1}]},
-            {text: '*ack* Um, Mommy? Sorry, Mommy?', scores: [{shipId: ships.kashin.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.adams.id, score: 1}]},
-            {text: 'Literally born on the same day as me', scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
-            {text: '"Find me in the mountains, cause Im a cougar"', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}]},
-            {text: "Why shouldn't I rob the cradle?", scores: [{shipId: ships.kilo.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.aliya.id, score: 1}]}
+            {text: '#GraveRobber', scores: [{shipId: ships.iowa.id, amount: 1}, {shipId: ships.forrestal.id, amount: 1}]},
+            {text: '*ack* Um, Mommy? Sorry, Mommy?', scores: [{shipId: ships.kashin.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.osa.id, amount: 1}, {shipId: ships.adams.id, amount: 1}]},
+            {text: 'Literally born on the same day as me', scores: [{shipId: ships.moskva.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.kara.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.knox.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.han.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}]},
+            {text: '"Find me in the mountains, cause Im a cougar"', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.kiev.id, amount: 1}, {shipId: ships.la.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}]},
+            {text: "Why shouldn't I rob the cradle?", scores: [{shipId: ships.kilo.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}]}
         ]
     },
     {
         id: 'outgoing',
         text: 'How outgoing would you like your partner to be?',
         answers: [
-            {text: "The party don't start 'till they walk in", scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kirov.id, score: 1}]},
-            {text: 'Designated Hype Man', scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.iowa.id, score: 1}]},
-            {text: 'Being the center of attention... every now and again', scores: [{shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
-            {text: "Good at conversations and friendly, but doesn't draw a scene", scores: [{shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
-            {text: 'The quiet one in the corner, plotting their escape', scores: [{shipId: ships.haruna.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.knox.id, score: 1}]}
+            {text: "The party don't start 'till they walk in", scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}]},
+            {text: 'Designated Hype Man', scores: [{shipId: ships.forrestal.id, amount: 1}, {shipId: ships.kiev.id, amount: 1}, {shipId: ships.la.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}]},
+            {text: 'Being the center of attention... every now and again', scores: [{shipId: ships.kilo.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.osa.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}]},
+            {text: "Good at conversations and friendly, but doesn't draw a scene", scores: [{shipId: ships.kara.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}, {shipId: ships.adams.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.han.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}]},
+            {text: 'The quiet one in the corner, plotting their escape', scores: [{shipId: ships.haruna.id, amount: 1}, {shipId: ships.moskva.id, amount: 1}, {shipId: ships.knox.id, amount: 1}]}
         ]
     },
     {
         id: 'reaction',
         text: 'A stranger slaps your ass in public. How would you want your partner to react?',
         answers: [
-            {text: 'Fisticuffs, pepper spray, hand grenade, the works', scores: [{shipId: ships.kirov.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}]},
-            {text: 'Slaps their ass back, then squares up', scores: [{shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.longbeach.id, score: 1}]},
-            {text: 'Throws them a dirty look; "What the hell, dude?"', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.adams.id, score: 1}]},
-            {text: '"Are you ok? Lets get out of here."', scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.aliya.id, score: 1}, {shipId: ships.alvand.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.luda.id, score: 1}]},
-            {text: 'Follows them, finds their car, slashes their tires', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.han.id, score: 1}]}
+            {text: 'Fisticuffs, pepper spray, hand grenade, the works', scores: [{shipId: ships.kirov.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}]},
+            {text: 'Slaps their ass back, then squares up', scores: [{shipId: ships.slava.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}]},
+            {text: 'Throws them a dirty look; "What the hell, dude?"', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.kiev.id, amount: 1}, {shipId: ships.kara.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.adams.id, amount: 1}]},
+            {text: '"Are you ok? Lets get out of here."', scores: [{shipId: ships.forrestal.id, amount: 1}, {shipId: ships.moskva.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}, {shipId: ships.knox.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}, {shipId: ships.osa.id, amount: 1}, {shipId: ships.luda.id, amount: 1}]},
+            {text: 'Follows them, finds their car, slashes their tires', scores: [{shipId: ships.la.id, amount: 1}, {shipId: ships.kilo.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}, {shipId: ships.han.id, amount: 1}]}
         ]
     },
     {
         id: 'appearance',
         text: "How important is your partner's appearance for you?",
         answers: [
-            {text: "If they're not a supermodel, I'm not interested", scores: [{shipId: ships.kara.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.la.id, score: 1}]},
-            {text: 'I want my friends to be a *little* jealous', scores: [{shipId: ships.kirov.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.adams.id, score: 1}]},
-            {text: "It's what's on the inside that matters", scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
-            {text: "Everyone's beautiful in their own way", scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
-            {text: ';)', scores: [{shipId: ships.spruance.id, score: 1}, {shipId: ships.aliya.id, score: 1}]}
+            {text: "If they're not a supermodel, I'm not interested", scores: [{shipId: ships.kara.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.la.id, amount: 1}]},
+            {text: 'I want my friends to be a *little* jealous', scores: [{shipId: ships.kirov.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.adams.id, amount: 1}]},
+            {text: "Everyone's beautiful in their own way", scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.kiev.id, amount: 1}, {shipId: ships.kilo.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.han.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}]},
+            {text: "It's whats on the inside that matters", scores: [{shipId: ships.forrestal.id, amount: 1}, {shipId: ships.moskva.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.osa.id, amount: 1}, {shipId: ships.knox.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}]},
+            {text: ';)', scores: [{shipId: ships.spruance.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}]}
         ]
     },
     {
         id: 'kids',
         text: 'How many kids would you want with your partner?',
         answers: [
-            {text: 'Zero, thank you very much', scores: [{shipId: ships.la.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
-            {text: 'Just one', scores: [{shipId: ships.kara.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.knox.id, score: 1}]},
-            {text: "2-4 isn't too many", scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.aliya.id, score: 1}]},
-            {text: '"God wants us to repopulate the Earth" number of kids', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}, {shipId: ships.kiev.id, score: 1}]}
+            {text: 'Zero, thank you very much', scores: [{shipId: ships.la.id, amount: 1}, {shipId: ships.kilo.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.osa.id, amount: 1}, {shipId: ships.adams.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}, {shipId: ships.han.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}]},
+            {text: 'Just one', scores: [{shipId: ships.kara.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.knox.id, amount: 1}]},
+            {text: "2-4 isn't too many", scores: [{shipId: ships.moskva.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}]},
+            {text: '"God wants us to repopulate the Earth" number of kids', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.forrestal.id, amount: 1}, {shipId: ships.kiev.id, amount: 1}]}
         ]
     },
     {
         id: 'restaurant',
         text: "You're going out to eat with your partner, and you get to choose. Which of these places are you going?",
         answers: [
-            {text: 'A burger joint', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.forrestal.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.spruance.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.knox.id, score: 1}]},
-            {text: 'A sushi bar', scores: [{shipId: ships.haruna.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.han.id, score: 1}, {shipId: ships.yushio.id, score: 1}]},
-            {text: 'Authentic Ukranian restaurant', scores: [{shipId: ships.kiev.id, score: 1}, {shipId: ships.moskva.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.kilo.id, score: 1}, {shipId: ships.alfa.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.osa.id, score: 1}]},
-            {text: 'Mediterranean cuisine', scores: [{shipId: ships.alvand.id, score: 1}, {shipId: ships.aliya.id, score: 1}]}
+            {text: 'A burger joint', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.forrestal.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}, {shipId: ships.adams.id, amount: 1}, {shipId: ships.la.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}, {shipId: ships.knox.id, amount: 1}]},
+            {text: 'A sushi bar', scores: [{shipId: ships.haruna.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.han.id, amount: 1}, {shipId: ships.yushio.id, amount: 1}]},
+            {text: 'Authentic Ukranian restaurant', scores: [{shipId: ships.kiev.id, amount: 1}, {shipId: ships.moskva.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.kilo.id, amount: 1}, {shipId: ships.alfa.id, amount: 1}, {shipId: ships.kara.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.osa.id, amount: 1}]},
+            {text: 'Mediterranean cuisine', scores: [{shipId: ships.alvand.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}]}
         ]
     },
     {
         id: 'pace',
         text: 'Would you want your partner to be a more fast-paced or slow-paced person?',
         answers: [
-            {text: '#RiseAndGrind', scores: [{shipId: ships.alfa.id, score: 1}, {shipId: ships.luda.id, score: 1}, {shipId: ships.osa.id, score: 1}, {shipId: ships.alvand.id, score: 1}]},
-            {text: 'A real go-getter', scores: [{shipId: ships.forrestal.id, score: 1}, {shipId: ships.la.id, score: 1}, {shipId: ships.kara.id, score: 1}, {shipId: ships.kashin.id, score: 1}, {shipId: ships.adams.id, score: 1}, {shipId: ships.iowa.id, score: 1}, {shipId: ships.aliya.id, score: 1}]},
-            {text: 'Life is all about balance', scores: [{shipId: ships.nimitz.id, score: 1}, {shipId: ships.kiev.id, score: 1}, {shipId: ships.kirov.id, score: 1}, {shipId: ships.slava.id, score: 1}, {shipId: ships.sovremenny.id, score: 1}, {shipId: ships.ticonderoga.id, score: 1}, {shipId: ships.longbeach.id, score: 1}, {shipId: ships.haruna.id, score: 1}, {shipId: ships.tachikaze.id, score: 1}, {shipId: ships.spruance.id, score: 1}]},
-            {text: 'Takes a scenic detour now and again', scores: [{shipId: ships.moskva.id, score: 1}, {shipId: ships.knox.id, score: 1}, {shipId: ships.han.id, score: 1}]},
-            {text: '"Goals? What are those?"', scores: [{shipId: ships.yushio.id, score: 1}, {shipId: ships.kilo.id, score: 1}]}
+            {text: '#RiseAndGrind', scores: [{shipId: ships.alfa.id, amount: 1}, {shipId: ships.luda.id, amount: 1}, {shipId: ships.osa.id, amount: 1}, {shipId: ships.alvand.id, amount: 1}]},
+            {text: 'A real go-getter', scores: [{shipId: ships.forrestal.id, amount: 1}, {shipId: ships.la.id, amount: 1}, {shipId: ships.kara.id, amount: 1}, {shipId: ships.kashin.id, amount: 1}, {shipId: ships.adams.id, amount: 1}, {shipId: ships.iowa.id, amount: 1}, {shipId: ships.aliya.id, amount: 1}]},
+            {text: 'Life is all about balance', scores: [{shipId: ships.nimitz.id, amount: 1}, {shipId: ships.kiev.id, amount: 1}, {shipId: ships.kirov.id, amount: 1}, {shipId: ships.slava.id, amount: 1}, {shipId: ships.sovremenny.id, amount: 1}, {shipId: ships.ticonderoga.id, amount: 1}, {shipId: ships.longbeach.id, amount: 1}, {shipId: ships.haruna.id, amount: 1}, {shipId: ships.tachikaze.id, amount: 1}, {shipId: ships.spruance.id, amount: 1}]},
+            {text: 'Takes a scenic detour now and again', scores: [{shipId: ships.moskva.id, amount: 1}, {shipId: ships.knox.id, amount: 1}, {shipId: ships.han.id, amount: 1}]},
+            {text: '"Goals? What are those?"', scores: [{shipId: ships.yushio.id, amount: 1}, {shipId: ships.kilo.id, amount: 1}]}
         ]
     }
 ]
@@ -117,12 +118,10 @@ const startQuiz = () => {
 }
 let answeredQuestions = [];
 const submitAnswer = () => {
-    let choice = document.querySelector('input[name="answer"]:checked');
-    checkAnswer();
+    let choice = document.querySelector('input[name="answer"]:checked');;
 }
 const getQuestion = () => {  // Not sure if this needs to be alone or combined with response checks
     for (let i in questions) {
-        checkAnswer();
         answeredQuestions.push(currentQuestion);
         currentQuestion += 1;
         if (answeredQuestions.length === questions.length) {
@@ -132,13 +131,24 @@ const getQuestion = () => {  // Not sure if this needs to be alone or combined w
         }
     }
 
-} 
+}
+const result = answeredQuestions.reduce((acc, answeredQuestions) => {
+    answeredQuestions.answers.scores.forEach(score => {
+        if (!acc[score.shipId]) {
+            acc[score.shipId] = score.amount;
+        } else {
+            acc[score.shipId] += score.amount;
+        }
+    })
+})
 const startTimer = () => {
     if (!countdown) {
         countdown = setInterval(() => {
             time--;
             if (time <= 0) {
                 showResult();
+            } else {
+                clock.textContent = time;
             }
         }, 20);
     }
@@ -340,14 +350,16 @@ const determineWinner = ships => { // creates new array with top 3 ships, then r
     const sortedShips = ships;
     sortedShips.sort((a, b) => a.score - b.score);
     runnerUps = sortedShips.slice(0, 3);
-    winner = runnerUps.slice(Math.floor(Math.random() * 3), ); // need an end value for the slice method
-    // const x = Math.floor(Math.random() * 3)
-    // winner = runnerUps.slice(x, x + 1)
+    // winner = runnerUps.slice(Math.floor(Math.random() * 3), ); // need an end value for the slice method
+    const x = Math.floor(Math.random() * 3)
+    winner = runnerUps.slice(x, x + 1)
 }
 const showResult = () => {
-    if (winner[0] === 'nimitz') {
-        nimitz.classList.remove('hidden');
-    }
+    return winner.map(ship => {
+        resultImage.src = ship.image;
+        resultName.textContent = ship.name;
+        resultDescription.textContent = ship.description;
+    })
 }
 startBtn.addEventListener('click', () => {
     startQuiz();
