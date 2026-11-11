@@ -10,7 +10,6 @@ const submit = document.getElementsByClassName('submission');
 // const result = document.getElementById('result');
 const quiz = document.getElementById('quiz');
 const quizContainer = document.getElementById('quiz-container');
-let time = 20;
 let currentQuestion = 0;
 let choice = '';
 const questions = [
@@ -112,6 +111,12 @@ const questions = [
         ]
     }
 ]
+
+answeredQuestions.push({
+    questionId: questions[currentQuestion].id,
+    answers: questions[currentQuestion].answers
+})
+
 const startQuiz = () => {
     quizContainer.classList.add('hidden');
     quiz.classList.remove('hidden');
@@ -141,19 +146,6 @@ const result = answeredQuestions.reduce((acc, answeredQuestions) => {
         }
     })
 })
-const startTimer = () => {
-    if (!countdown) {
-        countdown = setInterval(() => {
-            time--;
-            if (time <= 0) {
-                showResult();
-            } else {
-                clock.textContent = time;
-            }
-        }, 20);
-    }
-}
-
 const ships = {
     nimitz: {
         id: 'nimitz',
@@ -341,7 +333,6 @@ const ships = {
 
 const endQuiz = () => {
     console.log("After careful analysis, our top scientists sourced from only our best free-range asylums have found the warship that is meant for you. Are you ready?");
-    startTimer();
     determineWinner();
 }
 let runnerUps = [];
