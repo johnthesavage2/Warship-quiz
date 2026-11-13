@@ -1,5 +1,7 @@
 const startBtn = document.getElementById('start-btn');
-const endBtn = document.getElementById('submit-btn');
+const submitBtn = document.getElementById('submit-btn');
+const endBtn = document.getElementById('reveal-btn');
+const restartBtn = document.getElementById('restart-btn');
 const testQuestion = document.getElementsByClassName('question');
 const answerA = document.getElementsByClassName('A');
 const answerB = document.getElementsByClassName('B');
@@ -7,7 +9,7 @@ const answerC = document.getElementsByClassName('C');
 const answerD = document.getElementsByClassName('D');
 const answerE = document.getElementsByClassName('E');
 const submit = document.getElementsByClassName('submission');
-// const result = document.getElementById('result');
+const winningShip = document.getElementById('winning-ship');
 const quiz = document.getElementById('quiz');
 const quizContainer = document.getElementById('quiz-container');
 let currentQuestion = 0;
@@ -315,8 +317,6 @@ const getQuestion = () => {  // Not sure if this needs to be alone or combined w
         currentQuestion += 1;
         if (answeredQuestions.length === questions.length) {
             endQuiz();
-            quiz.classList.add('hidden');
-            result.classList.remove('hidden');
         }
     }
 
@@ -332,15 +332,16 @@ const result = answeredQuestions.reduce((acc, answeredQuestions) => {
 }, 0)
 
 const endQuiz = () => {
-    console.log("After careful analysis, our top scientists sourced from only our best free-range asylums have found the warship that is meant for you. Are you ready?");
+    quiz.classList.add('hidden');
+    winningShip.classList.remove('hidden');
     determineWinner();
 }
 let runnerUps = [];
 let winner = [];
-const determineWinner = ships => { // creates new array with top 3 ships, then randomly chooses one as the winner
-    const sortedShips = ships;
+const determineWinner = () => { // creates new array with top 3 ships, then randomly chooses one as the winner
+    const sortedShips = [ships];
     sortedShips.sort((a, b) => a.score - b.score);
-    runnerUps = sortedShips.slice(0, 3);
+    runnerUps = sortedShips.slice(0, 3);  
     // winner = runnerUps.slice(Math.floor(Math.random() * 3), ); // need an end value for the slice method
     const x = Math.floor(Math.random() * 3)
     winner = runnerUps.slice(x, x + 1)
@@ -355,5 +356,10 @@ const showResult = () => {
 startBtn.addEventListener('click', () => {
     startQuiz();
     getQuestion();
+});
+submitBtn.addEventListener('click', (submitAnswer));
+endBtn.addEventListener('click', () => {
+    showResult();
+/*    revealBtn.classList.add('hidden');
+    restartBtn.classList.remove('hidden'); */  
 })
-endBtn.addEventListener('click', (submitAnswer)) 
